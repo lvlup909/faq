@@ -3,27 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Level UP - مركز المساعدة (FAQ)</title>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <title>Level UP - مركز المساعدة والدعم</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0f1115;
-            --panel-bg: #1a1c23;
-            --text-color: #ffffff;
-            --accent-color: #0070cc; /* PS4 Blue */
+            --bg-color: #0b0c10;
+            --panel-bg: #16181f;
+            --text-color: #e0e6ed;
+            --text-muted: #8b949e;
+            --accent-color: #0070cc; /* PS Blue */
             --accent-hover: #005cba;
-            --border-color: #2a2d35;
+            --border-color: #232630;
+            --note-bg: rgba(255, 69, 58, 0.1);
+            --note-border: #ff453a;
             --transition-speed: 0.4s;
         }
 
-        /* PS5 Theme Variables */
+        /* PS5 Theme Colors */
         body.theme-ps5 {
-            --bg-color: #f0f4f8;
+            --bg-color: #f2f5f9;
             --panel-bg: #ffffff;
-            --text-color: #121212;
-            --accent-color: #121212; /* PS5 Black/White aesthetic */
+            --text-color: #111418;
+            --text-muted: #5c6773;
+            --accent-color: #111418; /* PS5 Minimalist Black */
             --accent-hover: #333333;
-            --border-color: #d1d5db;
+            --border-color: #d1d6e0;
+            --note-bg: rgba(255, 69, 58, 0.05);
         }
 
         * {
@@ -41,219 +46,260 @@
         }
 
         .container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 40px 20px;
         }
 
-        /* Header & Level UP Branding */
+        /* Header & Logo */
         header {
             text-align: center;
-            margin-bottom: 40px;
-            padding: 20px 0;
-            border-bottom: 2px solid var(--accent-color);
-            transition: border-color var(--transition-speed) ease;
+            margin-bottom: 50px;
         }
 
         h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
+            font-size: 3rem;
+            font-weight: 800;
             letter-spacing: 2px;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             text-transform: uppercase;
-            text-shadow: 0 0 10px rgba(0, 112, 204, 0.3);
+            color: var(--text-color);
+            text-shadow: 0 0 15px rgba(0, 112, 204, 0.4);
+            transition: color var(--transition-speed) ease, text-shadow var(--transition-speed) ease;
         }
 
         body.theme-ps5 h1 {
-            text-shadow: none;
+            text-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
         }
 
-        /* Controls: Language and Console Toggle */
+        /* Controls: Language and Console */
         .controls {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 20px;
+            flex-wrap: wrap;
         }
 
-        button {
-            background-color: transparent;
+        button.toggle-btn {
+            background-color: var(--panel-bg);
             color: var(--text-color);
             border: 2px solid var(--border-color);
-            padding: 10px 25px;
-            border-radius: 8px;
-            font-size: 1rem;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-size: 1.1rem;
             font-weight: 700;
             cursor: pointer;
-            transition: all var(--transition-speed) ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
-        button:hover {
+        button.toggle-btn:hover {
             border-color: var(--accent-color);
-            box-shadow: 0 0 10px rgba(0, 112, 204, 0.2);
+            transform: translateY(-2px);
         }
 
-        body.theme-ps5 button:hover {
-            box-shadow: 0 0 10px rgba(18, 18, 18, 0.1);
+        button.toggle-btn.active-ps4 {
+            background-color: #0070cc;
+            color: white;
+            border-color: #0070cc;
+            box-shadow: 0 0 15px rgba(0, 112, 204, 0.5);
         }
 
-        button.active {
-            background-color: var(--accent-color);
-            color: #fff;
-            border-color: var(--accent-color);
+        button.toggle-btn.active-ps5 {
+            background-color: #111418;
+            color: white;
+            border-color: #111418;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
         }
 
-        /* FAQ Accordion Styles */
-        .faq-list {
-            opacity: 1;
-            transition: opacity var(--transition-speed) ease;
-        }
-
+        /* FAQ Accordion */
         .faq-item {
             background-color: var(--panel-bg);
             border: 1px solid var(--border-color);
-            border-radius: 12px;
-            margin-bottom: 15px;
+            border-radius: 16px;
+            margin-bottom: 20px;
             overflow: hidden;
-            transition: background-color var(--transition-speed) ease, border-color var(--transition-speed) ease;
+            transition: all var(--transition-speed) ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .faq-item:hover {
+            border-color: var(--accent-color);
         }
 
         .faq-btn {
             width: 100%;
             text-align: right;
-            padding: 20px;
-            font-size: 1.2rem;
+            padding: 25px;
+            font-size: 1.3rem;
+            font-weight: 700;
             background: none;
             border: none;
             color: var(--text-color);
+            cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            transition: color 0.3s ease;
         }
 
         body[dir="ltr"] .faq-btn {
             text-align: left;
         }
 
-        .faq-btn::after {
-            content: '▼';
-            font-size: 0.9rem;
-            transition: transform var(--transition-speed) ease;
-        }
-
-        .faq-item.open .faq-btn::after {
-            transform: rotate(180deg);
+        .faq-btn:hover {
             color: var(--accent-color);
         }
 
-        /* FAQ Content (Steps & Images) */
+        .faq-icon {
+            font-size: 1rem;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            color: var(--accent-color);
+        }
+
+        .faq-item.open .faq-icon {
+            transform: rotate(180deg);
+        }
+
         .faq-content {
             max-height: 0;
             opacity: 0;
-            padding: 0 20px;
-            transition: max-height var(--transition-speed) ease, opacity var(--transition-speed) ease, padding var(--transition-speed) ease;
+            padding: 0 25px;
+            visibility: hidden;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+                        opacity 0.4s ease, 
+                        padding 0.4s ease,
+                        visibility 0.5s;
         }
 
         .faq-item.open .faq-content {
-            padding: 0 20px 20px 20px;
+            padding: 0 25px 25px 25px;
             opacity: 1;
+            visibility: visible;
         }
 
         .faq-content ol {
             margin-inline-start: 25px;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            color: var(--text-muted);
         }
 
         .faq-content li {
-            margin-bottom: 10px;
-            font-size: 1.05rem;
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+            font-weight: 500;
         }
 
+        .faq-content li strong {
+            color: var(--text-color);
+        }
+
+        /* Important Note */
         .important-note {
-            background-color: rgba(255, 69, 58, 0.1);
-            border-right: 4px solid #ff453a;
-            padding: 10px 15px;
-            margin-bottom: 15px;
-            border-radius: 4px;
+            background-color: var(--note-bg);
+            border-right: 4px solid var(--note-border);
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
             font-weight: 700;
-            color: #ff6b6b;
+            color: #ff453a;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         
         body[dir="ltr"] .important-note {
             border-right: none;
-            border-left: 4px solid #ff453a;
+            border-left: 4px solid var(--note-border);
         }
 
         /* Images Grid */
         .faq-images {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
             margin-top: 20px;
         }
 
         .faq-images img {
             width: 100%;
             height: auto;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-            transition: transform 0.3s ease;
+            border-radius: 12px;
+            border: 2px solid var(--border-color);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
         .faq-images img:hover {
-            transform: scale(1.02);
+            transform: scale(1.03);
             border-color: var(--accent-color);
         }
+        
+        .fade-out {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        .fade-in {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
     </style>
 </head>
 <body>
 
     <div class="container">
         <header>
-            <h1 id="pageTitle">Level UP Support</h1>
+            <h1 id="pageTitle">Level UP FAQ</h1>
             <div class="controls">
-                <button id="langBtn" onclick="toggleLanguage()">English</button>
-                <button id="consoleBtn" class="active" onclick="toggleConsole()">PS5 / تبديل لـ</button>
+                <button id="langBtn" class="toggle-btn" onclick="toggleLanguage()">🌐 English</button>
+                <button id="consoleBtn" class="toggle-btn active-ps4" onclick="toggleConsole()">🎮 Switch to PS5</button>
             </div>
         </header>
 
-        <main id="faqContainer" class="faq-list">
+        <main id="faqContainer" class="fade-in">
             </main>
     </div>
 
     <script>
-        // Data Structure for FAQs
+        // قاعدة بيانات الأسئلة الشاملة (27 سؤال)
         const faqData = [
+            // 1. القمة: التفعيل، التراخيص، المكتبة
             {
                 id: 'primary_account',
-                title: { ar: 'تفعيل الحساب واعتباره جهازك الرئيسي', en: 'Activate as Your Primary PS4/PS5' },
+                title: { ar: 'تفعيل الحساب واعتباره جهازك الرئيسي', en: 'Activate as Your Primary Console' },
                 ps4: {
                     steps: {
-                        ar: ['اذهب إلى (الإعدادات).', 'اختر (إدارة الحساب).', 'اختر (تفعيل جهاز PS4 واعتباره جهازك الرئيسي).', 'اضغط على (تفعيل).'],
-                        en: ['Go to (Settings).', 'Select (Account Management).', 'Select (Activate as Your Primary PS4).', 'Click on (Activate).']
+                        ar: ['اذهب إلى <strong>(الإعدادات)</strong>.', 'اختر <strong>(إدارة الحساب)</strong>.', 'اختر <strong>(تفعيل جهاز PS4 واعتباره جهازك الرئيسي)</strong>.', 'اضغط على <strong>(تفعيل)</strong>.'],
+                        en: ['Go to <strong>(Settings)</strong>.', 'Select <strong>(Account Management)</strong>.', 'Select <strong>(Activate as Your Primary PS4)</strong>.', 'Click on <strong>(Activate)</strong>.']
                     },
-                    images: ['images/1000107241.png', 'images/1000107315.png', 'images/1000107312.png'] // استبدل بأسماء صورك الصحيحة إذا لزم الأمر
+                    images: ['1000107241.png', '1000107281.png'] // وضع الصور بالروت
                 },
                 ps5: {
                     steps: {
-                        ar: ['اذهب إلى (الإعدادات).', 'اختر (المستخدمون والحسابات).', 'اختر (أخرى).', 'اختر (مشاركة وحدة التحكم واللعب دون اتصال).', 'اضغط على (تمكين).'],
-                        en: ['Go to (Settings).', 'Select (Users and Accounts).', 'Select (Other).', 'Select (Console Sharing and Offline Play).', 'Click (Enable).']
+                        ar: ['اذهب إلى <strong>(الإعدادات)</strong>.', 'اختر <strong>(المستخدمون والحسابات)</strong>.', 'اختر <strong>(أخرى)</strong>.', 'اختر <strong>(مشاركة وحدة التحكم واللعب دون اتصال)</strong>.', 'اضغط على <strong>(تمكين)</strong>.'],
+                        en: ['Go to <strong>(Settings)</strong>.', 'Select <strong>(Users and Accounts)</strong>.', 'Select <strong>(Other)</strong>.', 'Select <strong>(Console Sharing and Offline Play)</strong>.', 'Click <strong>(Enable)</strong>.']
                     }
                 }
             },
             {
                 id: 'restore_licenses',
-                title: { ar: 'استعادة التراخيص (لحل مشكلة القفل على الألعاب)', en: 'Restore Licenses (Fixing Game Locks)' },
+                title: { ar: 'استعادة التراخيص (لحل مشكلة القفل على الألعاب)', en: 'Restore Licenses (Fix Game Padlock)' },
                 ps4: {
                     steps: {
-                        ar: ['اذهب إلى (الإعدادات).', 'اختر (إدارة الحساب).', 'اختر (استعادة التراخيص).', 'اضغط على (استعادة) وانتظر حتى يكتمل التحميل.'],
-                        en: ['Go to (Settings).', 'Select (Account Management).', 'Select (Restore Licenses).', 'Click (Restore) and wait for the process to complete.']
+                        ar: ['اذهب إلى <strong>(الإعدادات)</strong>.', 'اختر <strong>(إدارة الحساب)</strong>.', 'اختر <strong>(استعادة التراخيص)</strong>.', 'اضغط على <strong>(استعادة)</strong> وانتظر حتى يكتمل التحميل.'],
+                        en: ['Go to <strong>(Settings)</strong>.', 'Select <strong>(Account Management)</strong>.', 'Select <strong>(Restore Licenses)</strong>.', 'Click <strong>(Restore)</strong> and wait.']
                     },
-                    images: ['images/1000107312.png', 'images/1000107315.png', 'images/1000107313.png', 'images/1000107311.png', 'images/1000107314.png']
+                    images: ['1000107263.png', '1000107312.png', '1000107314.png']
                 },
                 ps5: {
                     steps: {
-                        ar: ['اذهب إلى (الإعدادات).', 'اختر (المستخدمون والحسابات).', 'اختر (أخرى).', 'اختر (استعادة التراخيص).', 'اضغط على (استعادة).'],
-                        en: ['Go to (Settings).', 'Select (Users and Accounts).', 'Select (Other).', 'Select (Restore Licenses).', 'Click (Restore).']
+                        ar: ['اذهب إلى <strong>(الإعدادات)</strong>.', 'اختر <strong>(المستخدمون والحسابات)</strong>.', 'اختر <strong>(أخرى)</strong>.', 'اختر <strong>(استعادة التراخيص)</strong>.', 'اضغط على <strong>(استعادة)</strong>.'],
+                        en: ['Go to <strong>(Settings)</strong>.', 'Select <strong>(Users and Accounts)</strong>.', 'Select <strong>(Other)</strong>.', 'Select <strong>(Restore Licenses)</strong>.', 'Click <strong>(Restore)</strong>.']
                     }
                 }
             },
@@ -262,96 +308,295 @@
                 title: { ar: 'تحميل الألعاب من المكتبة', en: 'Download Games from Library' },
                 note: { 
                     ar: 'تأكد أولاً من فتح الحساب (الاكونت) صاحب اللعبة. إذا طلب رمز مرور (Passcode)، فالرمز هو: مثلث، مربع، مثلث، مربع.', 
-                    en: 'Ensure you log into the account that owns the game first. If it asks for a Passcode, it is: Triangle, Square, Triangle, Square.' 
+                    en: 'Log into the account that owns the game first. If it asks for a Passcode, it is: Triangle, Square, Triangle, Square.' 
                 },
                 ps4: {
                     steps: {
-                        ar: ['اذهب إلى أيقونة (المكتبة - Library) في آخر الشاشة الرئيسية.', 'انزل إلى قسم (تم الشراء - Purchased).', 'اختر اللعبة التي تريدها واضغط على (تنزيل).'],
-                        en: ['Go to the (Library) icon at the end of the home screen.', 'Scroll down to the (Purchased) section.', 'Select the desired game and click (Download).']
+                        ar: ['اذهب إلى أيقونة <strong>(المكتبة - Library)</strong> في آخر الشاشة الرئيسية.', 'انزل إلى قسم <strong>(تم الشراء - Purchased)</strong>.', 'اختر اللعبة التي تريدها واضغط على <strong>(تنزيل)</strong>.'],
+                        en: ['Go to the <strong>(Library)</strong> icon at the end of the home screen.', 'Scroll down to the <strong>(Purchased)</strong> section.', 'Select the game and click <strong>(Download)</strong>.']
                     },
-                    images: ['images/1000107310.png', 'images/1000107309.png']
+                    images: ['1000107267.png', '1000107309.png']
                 },
                 ps5: {
                     steps: {
-                        ar: ['من الشاشة الرئيسية، اذهب إلى (مكتبة الألعاب - Game Library) في أقصى اليمين.', 'اذهب إلى تبويب (مجموعتك - Your Collection).', 'اختر اللعبة واضغط (تنزيل - Download).'],
-                        en: ['From the home screen, go to (Game Library) on the far right.', 'Navigate to the (Your Collection) tab.', 'Select the game and click (Download).']
+                        ar: ['من الشاشة الرئيسية، اذهب إلى <strong>(مكتبة الألعاب)</strong> في أقصى اليمين.', 'اذهب إلى تبويب <strong>(مجموعتك - Your Collection)</strong>.', 'اختر اللعبة واضغط <strong>(تنزيل)</strong>.'],
+                        en: ['From the home screen, go to <strong>(Game Library)</strong> on the far right.', 'Navigate to the <strong>(Your Collection)</strong> tab.', 'Select the game and click <strong>(Download)</strong>.']
+                    }
+                }
+            },
+            // 2. الحسابات والشبكة
+            {
+                id: 'create_local_user',
+                title: { ar: 'إنشاء مستخدم محلي (أوفلاين) على الجهاز', en: 'Create a Local Offline User' },
+                ps4: {
+                    steps: {
+                        ar: ['من الشاشة الرئيسية، اضغط مطولاً على زر PS في الذراع واختر <strong>(تبديل المستخدم)</strong>.', 'اختر <strong>(مستخدم جديد)</strong>.', 'اختر <strong>(إنشاء مستخدم)</strong> ثم وافق على الشروط.', 'اضغط <strong>(تخطي)</strong> عند شاشة تسجيل الدخول للشبكة لإنشاء مستخدم أوفلاين.'],
+                        en: ['Press and hold the PS button and select <strong>(Switch User)</strong>.', 'Select <strong>(New User)</strong>.', 'Select <strong>(Create a User)</strong> and accept terms.', 'Click <strong>(Skip)</strong> at the PSN sign-in screen.']
+                    },
+                    images: ['1000107279.png', '1000107304.png', '1000107306.jpg']
+                },
+                ps5: {
+                    steps: {
+                        ar: ['من الشاشة الرئيسية، اختر صورة ملفك الشخصي أعلى اليمين ثم <strong>(تبديل المستخدم)</strong>.', 'اختر <strong>(إضافة مستخدم)</strong>.', 'اختر <strong>(بدء الاستخدام)</strong> ووافق على الشروط.', 'اختر <strong>(تخطي وتسجيل الدخول لاحقاً)</strong>.']
                     }
                 }
             },
             {
-                id: 'change_language',
-                title: { ar: 'تغيير لغة الجهاز', en: 'Change System Language' },
+                id: 'create_psn',
+                title: { ar: 'إنشاء حساب شبكة بلايستيشن (PSN) جديد', en: 'Create a New PSN Account' },
                 ps4: {
                     steps: {
-                        ar: ['اذهب إلى (الإعدادات).', 'انزل للأسفل واختر (اللغة - Language).', 'اختر (لغة النظام) وحدد اللغة التي تناسبك.'],
-                        en: ['Go to (Settings).', 'Scroll down and select (Language).', 'Select (System Language) and choose your preferred language.']
+                        ar: ['أثناء إنشاء مستخدم جديد، اختر <strong>(هل أنت جديد على PlayStation Network؟ إنشاء حساب)</strong>.', 'اتبع الخطوات لاختيار البلد، اللغة، تاريخ الميلاد.', 'أدخل الإيميل وكلمة المرور واختَر <strong>(التالي)</strong>.', 'اختر الصورة الرمزية (Avatar) وأدخل المعرّف (ID).'],
+                        en: ['While creating a user, select <strong>(New to PlayStation Network? Create an Account)</strong>.', 'Follow steps to choose Country, Language, and DOB.', 'Enter Email and Password and click <strong>(Next)</strong>.', 'Choose an Avatar and enter your Online ID.']
                     },
-                    images: ['images/1000107257.png', 'images/1000107258.png', 'images/1000107259.png']
+                    images: ['1000107301.png', '1000107289.png', '1000107290.png', '1000107293.png']
                 },
                 ps5: {
                     steps: {
-                        ar: ['اذهب إلى (الإعدادات).', 'اختر (النظام).', 'اختر (اللغة)، ثم قم بتغيير لغة وحدة التحكم.'],
-                        en: ['Go to (Settings).', 'Select (System).', 'Select (Language), then change the console language.']
+                        ar: ['أثناء إضافة مستخدم، اختر <strong>(إنشاء حساب)</strong>.', 'أدخل تاريخ الميلاد والبلد.', 'أدخل البريد الإلكتروني وقم بتعيين كلمة مرور.', 'أكمل إعدادات الخصوصية والاسم.']
                     }
                 }
             },
+            {
+                id: 'login_psn',
+                title: { ar: 'تسجيل الدخول إلى حساب PSN موجود', en: 'Sign In to an Existing PSN Account' },
+                ps4: {
+                    steps: {
+                        ar: ['اذهب إلى <strong>(الإعدادات)</strong>.', 'اختر <strong>(إدارة الحساب)</strong>.', 'اختر <strong>(تسجيل الدخول إلى PlayStation Network)</strong>.', 'أدخل الإيميل والباسورد واضغط (تسجيل الدخول).'],
+                        en: ['Go to <strong>(Settings)</strong>.', 'Select <strong>(Account Management)</strong>.', 'Select <strong>(Sign In to PlayStation Network)</strong>.', 'Enter Email and Password and click Sign In.']
+                    },
+                    images: ['1000107262.png', '1000107265.png']
+                },
+                ps5: {
+                    steps: {
+                        ar: ['اذهب إلى <strong>(الإعدادات)</strong> > <strong>(المستخدمون والحسابات)</strong>.', 'اختر <strong>(الحساب)</strong> ثم <strong>(تسجيل الدخول)</strong>.', 'يمكنك إدخال البيانات يدوياً أو استخدام تطبيق PS App للـ QR Code.']
+                    }
+                }
+            },
+            {
+                id: 'change_avatar',
+                title: { ar: 'تغيير الصورة الرمزية (Avatar)', en: 'Change Profile Avatar' },
+                ps4: {
+                    steps: {
+                        ar: ['من الشاشة الرئيسية، اصعد للأعلى واختر <strong>(ملف التعريف)</strong>.', 'اضغط على النقاط الثلاث واختر <strong>(تعديل ملف التعريف)</strong>.', 'اختر <strong>(الصورة الرمزية)</strong> وحدد الصورة الجديدة.'],
+                        en: ['From home screen, press up and select <strong>(Profile)</strong>.', 'Click the three dots and select <strong>(Edit Profile)</strong>.', 'Select <strong>(Avatar)</strong> and choose a new one.']
+                    },
+                    images: ['1000107284.png', '1000107280.png']
+                },
+                ps5: {
+                    steps: {
+                        ar: ['اذهب إلى <strong>(ملف التعريف)</strong> من الشاشة الرئيسية.', 'اختر أيقونة التعديل (القلم) بجانب اسمك.', 'اختر <strong>(الصورة الرمزية)</strong> وقم بتغييرها.']
+                    }
+                }
+            },
+            // 3. التخزين والبيانات
+            {
+                id: 'storage_check',
+                title: { ar: 'معرفة مساحة التخزين المتبقية', en: 'Check Storage Space' },
+                ps4: {
+                    steps: {
+                        ar: ['اذهب إلى <strong>(الإعدادات)</strong>.', 'اختر <strong>(مساحة التخزين)</strong>.', 'ستظهر لك مساحة (تخزين النظام) ومساحة (التخزين الموسع) إن وجد.', 'اضغط عليها لمعرفة تفاصيل المساحة التي تستهلكها الألعاب.'],
+                        en: ['Go to <strong>(Settings)</strong>.', 'Select <strong>(Storage)</strong>.', 'You will see (System Storage) and (Extended Storage).', 'Click to see details of what games consume space.']
+                    },
+                    images: ['1000107232.png', '1000107233.png', '1000107216.png']
+                },
+                ps5: {
+                    steps: {
+                        ar: ['اذهب إلى <strong>(الإعدادات)</strong>.', 'اختر <strong>(مساحة التخزين)</strong>.', 'يمكنك تصفح (مساحة تخزين وحدة التحكم) أو (تخزين M.2 SSD) أو (تخزين USB الموسع).']
+                    }
+                }
+            },
+            {
+                id: 'copy_to_usb',
+                title: { ar: 'نسخ البيانات المحفوظة (التختيم) إلى فلاشة USB', en: 'Copy Saved Data to USB' },
+                ps4: {
+                    steps: {
+                        ar: ['اذهب إلى <strong>(الإعدادات)</strong>.', 'اختر <strong>(إدارة البيانات المحفوظة للتطبيق)</strong>.', 'اختر <strong>(البيانات المحفوظة في مساحة تخزين النظام)</strong>.', 'اختر <strong>(نسخ إلى جهاز تخزين USB)</strong>، ثم حدد اللعبة وانقر نسخ.'],
+                        en: ['Go to <strong>(Settings)</strong>.', 'Select <strong>(Application Saved Data Management)</strong>.', 'Select <strong>(Saved Data in System Storage)</strong>.', 'Choose <strong>(Copy to USB Storage Device)</strong>, select games, and copy.']
+                    },
+                    images: ['1000107222.png', '1000107221.png', '1000107223.png', '1000107245.png']
+                },
+                ps5: {
+                    steps: {
+                        ar: ['ملاحظة: لا يمكن نسخ تخزينات ألعاب PS5 إلى فلاشة USB (يتطلب PS Plus). لتخزينات PS4:', 'اذهب إلى <strong>(الإعدادات)</strong> > <strong>(البيانات المحفوظة وإعدادات الألعاب/التطبيقات)</strong>.', 'اختر <strong>(البيانات المحفوظة PS4)</strong>.', 'اختر <strong>(نسخ إلى محرك أقراص USB)</strong>.']
+                    }
+                }
+            },
+            {
+                id: 'copy_from_usb',
+                title: { ar: 'استرجاع التختيم من فلاشة USB للجهاز', en: 'Copy Saved Data from USB' },
+                ps4: {
+                    steps: {
+                        ar: ['اذهب إلى <strong>(الإعدادات)</strong>.', 'اختر <strong>(إدارة البيانات المحفوظة للتطبيق)</strong>.', 'اختر <strong>(البيانات المحفوظة على جهاز تخزين USB)</strong>.', 'اختر <strong>(نسخ إلى مساحة تخزين النظام)</strong>.'],
+                        en: ['Go to <strong>(Settings)</strong>.', 'Select <strong>(Application Saved Data Management)</strong>.', 'Select <strong>(Saved Data on USB Storage Device)</strong>.', 'Choose <strong>(Copy to System Storage)</strong>.']
+                    },
+                    images: ['1000107248.png', '1000107244.png']
+                },
+                ps5: {
+                    steps: {
+                        ar: ['اذهب إلى <strong>(الإعدادات)</strong> > <strong>(البيانات المحفوظة وإعدادات الألعاب)</strong>.', 'اختر <strong>(البيانات المحفوظة PS4)</strong>.', 'اختر <strong>(محرك أقراص USB)</strong> ثم <strong>(نسخ إلى مساحة تخزين وحدة التحكم)</strong>.']
+                    }
+                }
+            },
+            // 4. التنزيلات والألعاب
+            {
+                id: 'pause_download',
+                title: { ar: 'إيقاف مؤقت أو حذف تحميل/تحديث لعبة', en: 'Pause or Delete Download/Update' },
+                ps4: {
+                    steps: {
+                        ar: ['اذهب إلى <strong>(التنبيهات)</strong> من الشاشة الرئيسية.', 'اختر <strong>(التنزيلات)</strong>.', 'قف على اللعبة واضغط (X)، ثم اختر <strong>(إيقاف مؤقت)</strong> أو <strong>(إلغاء وحذف)</strong>.'],
+                        en: ['Go to <strong>(Notifications)</strong> from the home screen.', 'Select <strong>(Downloads)</strong>.', 'Press (X) on the game, then select <strong>(Pause)</strong> or <strong>(Cancel and Delete)</strong>.']
+                    },
+                    images: ['1000107246.png', '1000107225.png', '1000107229.png']
+                },
+                ps5: {
+                    steps: {
+                        ar: ['اضغط زر PS مرة واحدة لفتح (مركز التحكم).', 'اختر أيقونة <strong>(التنزيلات/عمليات الرفع)</strong>.', 'حدد التحميل واضغط (X)، ثم اختر <strong>(إيقاف مؤقت)</strong> أو <strong>(إلغاء وحذف)</strong>.']
+                    }
+                }
+            },
+            // 5. الإنترنت والشبكة
             {
                 id: 'wifi_setup',
-                title: { ar: 'تشغيل وإدخال الواي فاي (الإنترنت)', en: 'Set Up Wi-Fi Connection' },
+                title: { ar: 'إعداد الإنترنت وتوصيل الواي فاي (Wi-Fi)', en: 'Set Up Wi-Fi Connection' },
                 ps4: {
                     steps: {
-                        ar: ['اذهب إلى (الإعدادات).', 'اختر (الشبكة).', 'اختر (إعداد الاتصال بالإنترنت).', 'اختر (استخدام Wi-Fi) ثم (سهل)، وقم بإدخال الباسورد الخاص بشبكتك.'],
-                        en: ['Go to (Settings).', 'Select (Network).', 'Select (Set Up Internet Connection).', 'Choose (Use Wi-Fi) then (Easy), and enter your password.']
+                        ar: ['اذهب إلى <strong>(الإعدادات)</strong>.', 'اختر <strong>(الشبكة)</strong>.', 'اختر <strong>(إعداد الاتصال بالإنترنت)</strong>.', 'اختر <strong>(استخدام Wi-Fi)</strong> ثم <strong>(سهل)</strong>، وقم بإدخال الباسورد.'],
+                        en: ['Go to <strong>(Settings)</strong>.', 'Select <strong>(Network)</strong>.', 'Select <strong>(Set Up Internet Connection)</strong>.', 'Choose <strong>(Use Wi-Fi)</strong> then <strong>(Easy)</strong>, and enter password.']
                     },
-                    images: ['images/1000107269.png', 'images/1000107275.png']
+                    images: ['1000107269.png', '1000107275.png']
                 },
                 ps5: {
                     steps: {
-                        ar: ['اذهب إلى (الإعدادات).', 'اختر (الشبكة) ثم (الإعدادات).', 'اختر (إعداد الاتصال بالإنترنت) وحدد شبكتك من القائمة.'],
-                        en: ['Go to (Settings).', 'Select (Network) then (Settings).', 'Select (Set Up Internet Connection) and choose your network.']
+                        ar: ['اذهب إلى <strong>(الإعدادات)</strong>.', 'اختر <strong>(الشبكة)</strong> ثم <strong>(الإعدادات)</strong>.', 'اختر <strong>(إعداد الاتصال بالإنترنت)</strong> وحدد شبكتك للاتصال.']
+                    }
+                }
+            },
+            {
+                id: 'ip_mac',
+                title: { ar: 'معرفة عنوان IP والـ MAC Address', en: 'Find IP and MAC Address' },
+                ps4: {
+                    steps: {
+                        ar: ['اذهب إلى <strong>(الإعدادات)</strong>.', 'اختر <strong>(النظام)</strong>.', 'اختر <strong>(معلومات النظام)</strong> وستجد الـ IP والـ MAC الخاص بالواي فاي والكيبل.'],
+                        en: ['Go to <strong>(Settings)</strong>.', 'Select <strong>(System)</strong>.', 'Select <strong>(System Information)</strong> to view IP and MAC addresses.']
+                    },
+                    images: ['1000107237.png', '1000107235.png', '1000107234.png']
+                },
+                ps5: {
+                    steps: {
+                        ar: ['اذهب إلى <strong>(الإعدادات)</strong> > <strong>(الشبكة)</strong>.', 'اختر <strong>(حالة الاتصال)</strong>.', 'اختر <strong>(عرض حالة الاتصال)</strong> وستجد المعلومات هناك.']
+                    }
+                }
+            },
+            {
+                id: 'web_browser',
+                title: { ar: 'متصفح الإنترنت (Web Browser)', en: 'Access Web Browser' },
+                note: { 
+                    ar: 'متصفح PS5 مخفي ولا يوجد له تطبيق مباشر. في PS4 التطبيق موجود بوضوح.', 
+                    en: 'PS5 browser is hidden with no direct app. PS4 has a dedicated app.' 
+                },
+                ps4: {
+                    steps: {
+                        ar: ['من الشاشة الرئيسية، ابحث عن تطبيق <strong>(متصفح الإنترنت - WWW)</strong> وافتحه.', 'اضغط على زر (مثلث) للبحث أو كتابة عنوان URL.'],
+                        en: ['From the home screen, find the <strong>(Internet Browser - WWW)</strong> app.', 'Press (Triangle) to search or type a URL.']
+                    },
+                    images: ['1000107277.png', '1000107276.png']
+                },
+                ps5: {
+                    steps: {
+                        ar: ['أرسل رسالة لأي صديق تحتوي على الرابط: <strong>www.google.com</strong>', 'اضغط على الرابط في الرسالة، وسيفتح المتصفح الخفي لتتصفح ما تريد.']
+                    }
+                }
+            },
+            // 6. النظام، العرض، اللغة
+            {
+                id: 'change_language',
+                title: { ar: 'تغيير لغة عرض الجهاز', en: 'Change System Language' },
+                ps4: {
+                    steps: {
+                        ar: ['اذهب إلى <strong>(الإعدادات)</strong>.', 'انزل للأسفل واختر <strong>(اللغة)</strong>.', 'اختر <strong>(لغة النظام)</strong> وحدد اللغة المناسبة (مثال: العربية).'],
+                        en: ['Go to <strong>(Settings)</strong>.', 'Scroll down and select <strong>(Language)</strong>.', 'Select <strong>(System Language)</strong> and pick your preference.']
+                    },
+                    images: ['1000107257.png', '1000107258.png', '1000107259.png']
+                },
+                ps5: {
+                    steps: {
+                        ar: ['اذهب إلى <strong>(الإعدادات)</strong>.', 'اختر <strong>(النظام)</strong>.', 'اختر <strong>(اللغة)</strong> ثم <strong>(لغة وحدة التحكم)</strong>.']
+                    }
+                }
+            },
+            {
+                id: 'headphone_audio',
+                title: { ar: 'توجيه كل الصوت إلى سماعات الرأس (الذراع)', en: 'Output All Audio to Headphones' },
+                ps4: {
+                    steps: {
+                        ar: ['قم بتوصيل السماعة بالذراع.', 'اذهب إلى <strong>(الإعدادات)</strong> > <strong>(الأجهزة)</strong> > <strong>(أجهزة صوت)</strong>.', 'اختر <strong>(إخراج إلى سماعات الرأس)</strong> وغيره إلى <strong>(كل ملفات الصوت)</strong>.'],
+                        en: ['Plug headset into controller.', 'Go to <strong>(Settings)</strong> > <strong>(Devices)</strong> > <strong>(Audio Devices)</strong>.', 'Change <strong>(Output to Headphones)</strong> to <strong>(All Audio)</strong>.']
+                    },
+                    images: ['1000107273.png', '1000107272.png', '1000107274.png']
+                },
+                ps5: {
+                    steps: {
+                        ar: ['اضغط زر PS لفتح مركز التحكم.', 'اختر أيقونة <strong>(الصوت)</strong>.', 'اختر <strong>(إخراج إلى سماعات الرأس)</strong> وتأكد من اختيار <strong>(كل ملفات الصوت)</strong>.']
+                    }
+                }
+            },
+            {
+                id: 'display_hdr',
+                title: { ar: 'إعدادات دقة الشاشة وإخراج الفيديو (HDR)', en: 'Video Output & HDR Settings' },
+                ps4: {
+                    steps: {
+                        ar: ['اذهب إلى <strong>(الإعدادات)</strong>.', 'اختر <strong>(الصوت والشاشة)</strong>.', 'اختر <strong>(إعدادات إخراج الفيديو)</strong> لضبط الدقة (Resolution) والـ HDR.'],
+                        en: ['Go to <strong>(Settings)</strong>.', 'Select <strong>(Sound and Screen)</strong>.', 'Select <strong>(Video Output Settings)</strong> to adjust Resolution and HDR.']
+                    },
+                    images: ['1000107254.png', '1000107253.png', '1000107255.png']
+                },
+                ps5: {
+                    steps: {
+                        ar: ['اذهب إلى <strong>(الإعدادات)</strong>.', 'اختر <strong>(الشاشة والفيديو)</strong>.', 'اختر <strong>(إخراج الفيديو)</strong> لضبط 4K، VRR، 120Hz، و HDR.']
                     }
                 }
             }
-            // يمكنك إضافة باقي الأقسام بنفس النسق هنا...
         ];
 
-        // State variables
+        // المتغيرات لحفظ الحالة (لغة وجهاز)
         let currentLang = 'ar';
         let currentConsole = 'ps4';
 
-        // Elements
         const container = document.getElementById('faqContainer');
         const langBtn = document.getElementById('langBtn');
         const consoleBtn = document.getElementById('consoleBtn');
         const title = document.getElementById('pageTitle');
 
         function renderFAQ() {
-            // Fade out
-            container.style.opacity = 0;
+            // عمل Fade Out
+            container.classList.remove('fade-in');
+            container.classList.add('fade-out');
             
             setTimeout(() => {
                 container.innerHTML = '';
                 faqData.forEach((item, index) => {
                     const data = item[currentConsole];
                     const steps = data.steps[currentLang];
-                    const images = data.images || []; // PS5 will have empty images array for now
+                    const images = data.images || [];
 
                     const faqItem = document.createElement('div');
                     faqItem.className = 'faq-item';
 
-                    // Generate Note if exists
+                    // إنشاء النوت (إن وجدت)
                     const noteHtml = item.note ? `<div class="important-note">⚠️ ${item.note[currentLang]}</div>` : '';
 
-                    // Generate Images HTML (Only if PS4 and has images)
+                    // إنشاء الصور (فقط لو PS4 ويوجد صور)
                     const imagesHtml = (currentConsole === 'ps4' && images.length > 0) 
-                        ? `<div class="faq-images">${images.map(img => `<img src="${img}" alt="Step Image">`).join('')}</div>`
+                        ? `<div class="faq-images">${images.map(img => `<img src="${img}" alt="خطوات ${currentConsole}" loading="lazy">`).join('')}</div>`
                         : '';
 
                     faqItem.innerHTML = `
-                        <button class="faq-btn" onclick="toggleAccordion(this, ${index})">
-                            ${item.title[currentLang]}
+                        <button class="faq-btn" onclick="toggleAccordion(this)">
+                            <span>${item.title[currentLang]}</span>
+                            <span class="faq-icon">▼</span>
                         </button>
-                        <div class="faq-content" id="content-${index}">
+                        <div class="faq-content">
                             ${noteHtml}
                             <ol>
                                 ${steps.map(step => `<li>${step}</li>`).join('')}
@@ -362,65 +607,72 @@
                     container.appendChild(faqItem);
                 });
                 
-                // Fade in
-                container.style.opacity = 1;
-            }, 300); // Matches transition speed
+                // عمل Fade In
+                container.classList.remove('fade-out');
+                container.classList.add('fade-in');
+            }, 400); // يتطابق مع سرعة الـ Transition
         }
 
-        // Toggle Accordion Open/Close
         function toggleAccordion(btnElement) {
             const item = btnElement.parentElement;
             const content = item.querySelector('.faq-content');
             
-            // Close all others
+            // إغلاق أي بانل مفتوح غير اللي ضغطنا عليه
             document.querySelectorAll('.faq-item').forEach(el => {
-                if(el !== item) {
+                if(el !== item && el.classList.contains('open')) {
                     el.classList.remove('open');
                     el.querySelector('.faq-content').style.maxHeight = null;
                 }
             });
 
-            // Toggle current
+            // فتح أو إغلاق الحالي
             if (item.classList.contains('open')) {
                 item.classList.remove('open');
                 content.style.maxHeight = null;
             } else {
                 item.classList.add('open');
-                content.style.maxHeight = content.scrollHeight + "px";
+                // نجمع ارتفاع المحتوى الداخلي بالكامل
+                content.style.maxHeight = content.scrollHeight + 100 + "px"; 
             }
         }
 
-        // Toggle Language
         function toggleLanguage() {
             currentLang = currentLang === 'ar' ? 'en' : 'ar';
             document.body.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
             
-            // Update UI Texts
-            langBtn.textContent = currentLang === 'ar' ? 'English' : 'عربي';
-            consoleBtn.textContent = currentConsole === 'ps4' ? (currentLang === 'ar' ? 'PS5 / تبديل لـ' : 'Switch to PS5') : (currentLang === 'ar' ? 'PS4 / تبديل لـ' : 'Switch to PS4');
+            // تحديث النصوص
+            langBtn.innerHTML = currentLang === 'ar' ? '🌐 English' : '🌐 عربي';
+            updateConsoleBtnText();
             
             renderFAQ();
         }
 
-        // Toggle Console
         function toggleConsole() {
             if(currentConsole === 'ps4') {
                 currentConsole = 'ps5';
                 document.body.classList.add('theme-ps5');
-                consoleBtn.classList.remove('active');
+                consoleBtn.classList.remove('active-ps4');
+                consoleBtn.classList.add('active-ps5');
             } else {
                 currentConsole = 'ps4';
                 document.body.classList.remove('theme-ps5');
-                consoleBtn.classList.add('active');
+                consoleBtn.classList.remove('active-ps5');
+                consoleBtn.classList.add('active-ps4');
             }
             
-            // Update button text
-            consoleBtn.textContent = currentConsole === 'ps4' ? (currentLang === 'ar' ? 'PS5 / تبديل لـ' : 'Switch to PS5') : (currentLang === 'ar' ? 'PS4 / تبديل لـ' : 'Switch to PS4');
-            
+            updateConsoleBtnText();
             renderFAQ();
         }
 
-        // Initial Render
+        function updateConsoleBtnText() {
+            if (currentConsole === 'ps4') {
+                consoleBtn.innerHTML = currentLang === 'ar' ? '🎮 التبديل لـ PS5' : '🎮 Switch to PS5';
+            } else {
+                consoleBtn.innerHTML = currentLang === 'ar' ? '🎮 التبديل لـ PS4' : '🎮 Switch to PS4';
+            }
+        }
+
+        // تشغيل الريندر لأول مرة عند فتح الصفحة
         renderFAQ();
     </script>
 </body>
