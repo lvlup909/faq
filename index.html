@@ -11,7 +11,7 @@
             --panel-bg: #16181f;
             --text-color: #e0e6ed;
             --text-muted: #8b949e;
-            --accent-color: #0070cc; /* أزرق PS4 */
+            --accent-color: #0070cc;
             --accent-hover: #005cba;
             --border-color: #232630;
             --note-bg: rgba(255, 69, 58, 0.1);
@@ -19,13 +19,12 @@
             --transition-speed: 0.4s;
         }
 
-        /* ثيم الـ PS5 */
         body.theme-ps5 {
             --bg-color: #f2f5f9;
             --panel-bg: #ffffff;
             --text-color: #111418;
             --text-muted: #5c6773;
-            --accent-color: #111418; /* أسود/أبيض PS5 */
+            --accent-color: #111418;
             --accent-hover: #333333;
             --border-color: #d1d6e0;
             --note-bg: rgba(255, 69, 58, 0.05);
@@ -51,11 +50,9 @@
             padding: 40px 20px;
         }
 
-        /* ترويسة المتجر */
         header {
             text-align: center;
             margin-bottom: 40px;
-            position: relative;
         }
 
         h1 {
@@ -73,7 +70,6 @@
             text-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
         }
 
-        /* مؤشر الجهاز (Badge) */
         #activeConsoleBadge {
             display: inline-flex;
             align-items: center;
@@ -102,7 +98,6 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
-        /* أزرار التحكم */
         .controls {
             display: flex;
             justify-content: center;
@@ -128,7 +123,6 @@
             transform: translateY(-2px);
         }
 
-        /* القائمة المنسدلة للأسئلة */
         .faq-item {
             background-color: var(--panel-bg);
             border: 1px solid var(--border-color);
@@ -177,7 +171,6 @@
             transform: rotate(180deg);
         }
 
-        /* محتوى الخطوات */
         .faq-content {
             max-height: 0;
             opacity: 0;
@@ -211,7 +204,6 @@
             color: var(--text-color);
         }
 
-        /* الملاحظات الهامة */
         .important-note {
             background-color: var(--note-bg);
             border-right: 4px solid var(--note-border);
@@ -227,7 +219,6 @@
             border-left: 4px solid var(--note-border);
         }
         
-        /* مؤثرات الظهور والاختفاء */
         .fade-out { opacity: 0; transform: translateY(10px); }
         .fade-in { opacity: 1; transform: translateY(0); transition: opacity 0.3s ease, transform 0.3s ease; }
 
@@ -255,195 +246,209 @@
     </div>
 
     <script>
-        // قاعدة البيانات الشاملة (بدون صور)
         const faqData = [
+            // 1. التفعيل، التراخيص، المكتبة (أهم 3)
             {
                 id: 'primary_account',
                 title: { ar: 'تفعيل الحساب واعتباره جهازك الرئيسي', en: 'Activate as Your Primary Console' },
-                ps4: {
-                    steps: {
-                        ar: ['اذهب إلى <strong>(الإعدادات)</strong>.', 'اختر <strong>(إدارة الحساب)</strong>.', 'اختر <strong>(تفعيل جهاز PS4 واعتباره جهازك الرئيسي)</strong>.', 'اضغط على <strong>(تفعيل)</strong>.'],
-                        en: ['Go to <strong>(Settings)</strong>.', 'Select <strong>(Account Management)</strong>.', 'Select <strong>(Activate as Your Primary PS4)</strong>.', 'Click on <strong>(Activate)</strong>.']
-                    }
-                },
-                ps5: {
-                    steps: {
-                        ar: ['اذهب إلى <strong>(الإعدادات)</strong>.', 'اختر <strong>(المستخدمون والحسابات)</strong>.', 'اختر <strong>(أخرى)</strong>.', 'اختر <strong>(مشاركة وحدة التحكم واللعب دون اتصال)</strong>.', 'اضغط على <strong>(تمكين)</strong>.'],
-                        en: ['Go to <strong>(Settings)</strong>.', 'Select <strong>(Users and Accounts)</strong>.', 'Select <strong>(Other)</strong>.', 'Select <strong>(Console Sharing and Offline Play)</strong>.', 'Click <strong>(Enable)</strong>.']
-                    }
-                }
+                note: { ar: 'تأكد أولاً من فتح الحساب صاحب اللعبة. إذا طلب رمز مرور (Passcode)، فالرمز هو: مثلث، مربع، مثلث، مربع 0909.', en: 'Log into the account that owns the game first. If it asks for a Passcode, it is: Triangle, Square, Triangle, Square 0909.' },
+                ps4: { steps: { ar: ['اذهب إلى <strong>(الإعدادات)</strong>.', 'اختر <strong>(إدارة الحساب)</strong>.', 'اختر <strong>(تفعيل جهاز PS4 واعتباره جهازك الرئيسي)</strong>.', 'اضغط على <strong>(تفعيل)</strong>.'], en: ['Go to <strong>(Settings)</strong>.', 'Select <strong>(Account Management)</strong>.', 'Select <strong>(Activate as Your Primary PS4)</strong>.', 'Click on <strong>(Activate)</strong>.'] } },
+                ps5: { steps: { ar: ['اذهب إلى <strong>(الإعدادات)</strong>.', 'اختر <strong>(المستخدمون والحسابات)</strong>.', 'اختر <strong>(أخرى)</strong>.', 'اختر <strong>(مشاركة وحدة التحكم واللعب دون اتصال)</strong>.', 'اضغط على <strong>(تمكين)</strong>.'], en: ['Go to <strong>(Settings)</strong>.', 'Select <strong>(Users and Accounts)</strong>.', 'Select <strong>(Other)</strong>.', 'Select <strong>(Console Sharing and Offline Play)</strong>.', 'Click <strong>(Enable)</strong>.'] } }
             },
             {
                 id: 'restore_licenses',
                 title: { ar: 'استعادة التراخيص (لحل مشكلة القفل على الألعاب)', en: 'Restore Licenses (Fix Game Padlock)' },
-                ps4: {
-                    steps: {
-                        ar: ['اذهب إلى <strong>(الإعدادات)</strong>.', 'اختر <strong>(إدارة الحساب)</strong>.', 'اختر <strong>(استعادة التراخيص)</strong>.', 'اضغط على <strong>(استعادة)</strong> وانتظر حتى يكتمل التحميل.'],
-                        en: ['Go to <strong>(Settings)</strong>.', 'Select <strong>(Account Management)</strong>.', 'Select <strong>(Restore Licenses)</strong>.', 'Click <strong>(Restore)</strong> and wait.']
-                    }
-                },
-                ps5: {
-                    steps: {
-                        ar: ['اذهب إلى <strong>(الإعدادات)</strong>.', 'اختر <strong>(المستخدمون والحسابات)</strong>.', 'اختر <strong>(أخرى)</strong>.', 'اختر <strong>(استعادة التراخيص)</strong>.', 'اضغط على <strong>(استعادة)</strong>.'],
-                        en: ['Go to <strong>(Settings)</strong>.', 'Select <strong>(Users and Accounts)</strong>.', 'Select <strong>(Other)</strong>.', 'Select <strong>(Restore Licenses)</strong>.', 'Click <strong>(Restore)</strong>.']
-                    }
-                }
+                ps4: { steps: { ar: ['اذهب إلى <strong>(الإعدادات)</strong>.', 'اختر <strong>(إدارة الحساب)</strong>.', 'اختر <strong>(استعادة التراخيص)</strong>.', 'اضغط على <strong>(استعادة)</strong> وانتظر حتى يكتمل التحميل.'], en: ['Go to <strong>(Settings)</strong>.', 'Select <strong>(Account Management)</strong>.', 'Select <strong>(Restore Licenses)</strong>.', 'Click <strong>(Restore)</strong> and wait.'] } },
+                ps5: { steps: { ar: ['اذهب إلى <strong>(الإعدادات)</strong>.', 'اختر <strong>(المستخدمون والحسابات)</strong>.', 'اختر <strong>(أخرى)</strong>.', 'اختر <strong>(استعادة التراخيص)</strong>.', 'اضغط على <strong>(استعادة)</strong>.'], en: ['Go to <strong>(Settings)</strong>.', 'Select <strong>(Users and Accounts)</strong>.', 'Select <strong>(Other)</strong>.', 'Select <strong>(Restore Licenses)</strong>.', 'Click <strong>(Restore)</strong>.'] } }
             },
             {
                 id: 'library_games',
                 title: { ar: 'تحميل الألعاب من المكتبة', en: 'Download Games from Library' },
-                note: { 
-                    ar: 'تأكد أولاً من فتح الحساب صاحب اللعبة. إذا طلب رمز مرور (Passcode)، فالرمز هو: مثلث، مربع، مثلث، مربع.', 
-                    en: 'Log into the account that owns the game first. If it asks for a Passcode, it is: Triangle, Square, Triangle, Square.' 
-                },
-                ps4: {
-                    steps: {
-                        ar: ['اذهب إلى أيقونة <strong>(المكتبة)</strong> في أقصى يمين الشاشة الرئيسية.', 'انزل إلى قسم <strong>(تم الشراء)</strong>.', 'اختر اللعبة واضغط على <strong>(تنزيل)</strong>.'],
-                        en: ['Go to the <strong>(Library)</strong> icon on the far right of the home screen.', 'Scroll down to <strong>(Purchased)</strong>.', 'Select the game and click <strong>(Download)</strong>.']
-                    }
-                },
-                ps5: {
-                    steps: {
-                        ar: ['من الشاشة الرئيسية، اذهب إلى <strong>(مكتبة الألعاب)</strong> في أقصى اليمين.', 'اذهب إلى تبويب <strong>(مجموعتك)</strong>.', 'اختر اللعبة واضغط <strong>(تنزيل)</strong>.'],
-                        en: ['From the home screen, go to <strong>(Game Library)</strong> on the far right.', 'Navigate to the <strong>(Your Collection)</strong> tab.', 'Select the game and click <strong>(Download)</strong>.']
-                    }
-                }
+                note: { ar: 'تأكد أولاً من فتح الحساب صاحب اللعبة. إذا طلب رمز مرور (Passcode)، فالرمز هو: مثلث، مربع، مثلث، مربع 0909.', en: 'Log into the account that owns the game first. If it asks for a Passcode, it is: Triangle, Square, Triangle, Square 0909.' },
+                ps4: { steps: { ar: ['اذهب إلى أيقونة <strong>(المكتبة)</strong> في أقصى يمين الشاشة الرئيسية.', 'انزل إلى قسم <strong>(تم الشراء)</strong>.', 'اختر اللعبة واضغط على <strong>(تنزيل)</strong>.'], en: ['Go to the <strong>(Library)</strong> icon on the far right of the home screen.', 'Scroll down to <strong>(Purchased)</strong>.', 'Select the game and click <strong>(Download)</strong>.'] } },
+                ps5: { steps: { ar: ['من الشاشة الرئيسية، اذهب إلى <strong>(مكتبة الألعاب)</strong> في أقصى اليمين.', 'اذهب إلى تبويب <strong>(مجموعتك)</strong>.', 'اختر اللعبة واضغط <strong>(تنزيل)</strong>.'], en: ['From the home screen, go to <strong>(Game Library)</strong> on the far right.', 'Navigate to the <strong>(Your Collection)</strong> tab.', 'Select the game and click <strong>(Download)</strong>.'] } }
             },
+            // 2. إدارة الحساب والمستخدمين
             {
                 id: 'create_local_user',
                 title: { ar: 'إنشاء مستخدم محلي (أوفلاين) جديد', en: 'Create a Local Offline User' },
-                ps4: {
-                    steps: {
-                        ar: ['من الشاشة الرئيسية، اضغط مطولاً على زر PS في الذراع واختر <strong>(تبديل المستخدم)</strong>.', 'اختر <strong>(مستخدم جديد)</strong> ثم <strong>(إنشاء مستخدم)</strong> ووافق على الشروط.', 'اضغط <strong>(تخطي)</strong> عند شاشة تسجيل الدخول للشبكة لإنشاء الحساب محلياً فقط.'],
-                        en: ['Hold the PS button and select <strong>(Switch User)</strong>.', 'Select <strong>(New User)</strong> > <strong>(Create a User)</strong> and accept terms.', 'Click <strong>(Skip)</strong> at the PSN sign-in screen to keep it offline.']
-                    }
-                },
-                ps5: {
-                    steps: {
-                        ar: ['من الشاشة الرئيسية، اختر صورة ملفك الشخصي أعلى اليمين ثم <strong>(تبديل المستخدم)</strong>.', 'اختر <strong>(إضافة مستخدم)</strong> ثم <strong>(بدء الاستخدام)</strong> ووافق على الشروط.', 'اختر <strong>(تخطي وتسجيل الدخول لاحقاً)</strong>.'],
-                        en: ['From the home screen, select your profile picture, then <strong>(Switch User)</strong>.', 'Select <strong>(Add User)</strong> > <strong>(Get Started)</strong> and accept terms.', 'Select <strong>(Skip and Sign In Later)</strong>.']
-                    }
-                }
+                ps4: { steps: { ar: ['اضغط مطولاً على زر PS واختر <strong>(تبديل المستخدم)</strong>.', 'اختر <strong>(مستخدم جديد)</strong> ثم <strong>(إنشاء مستخدم)</strong>.', 'اضغط <strong>(تخطي)</strong> عند شاشة تسجيل الدخول للشبكة.'], en: ['Hold the PS button and select <strong>(Switch User)</strong>.', 'Select <strong>(New User)</strong> > <strong>(Create a User)</strong>.', 'Click <strong>(Skip)</strong> at the PSN sign-in screen.'] } },
+                ps5: { steps: { ar: ['اختر صورة ملفك الشخصي أعلى اليمين ثم <strong>(تبديل المستخدم)</strong>.', 'اختر <strong>(إضافة مستخدم)</strong> ثم <strong>(بدء الاستخدام)</strong>.', 'اختر <strong>(تخطي وتسجيل الدخول لاحقاً)</strong>.'], en: ['Select your profile picture, then <strong>(Switch User)</strong>.', 'Select <strong>(Add User)</strong> > <strong>(Get Started)</strong>.', 'Select <strong>(Skip and Sign In Later)</strong>.'] } }
+            },
+            {
+                id: 'create_psn',
+                title: { ar: 'إنشاء حساب شبكة بلايستيشن (PSN) جديد', en: 'Create a New PSN Account' },
+                ps4: { steps: { ar: ['أثناء إنشاء مستخدم، اختر <strong>(هل أنت جديد على PSN؟ إنشاء حساب)</strong>.', 'أدخل تفاصيل البلد، وتاريخ الميلاد.', 'أدخل الإيميل، وكلمة المرور، والمعرّف (ID).'], en: ['While creating a user, select <strong>(New to PSN? Create an Account)</strong>.', 'Enter Country and DOB.', 'Enter Email, Password, and Online ID.'] } },
+                ps5: { steps: { ar: ['أثناء إضافة مستخدم، اختر <strong>(إنشاء حساب)</strong>.', 'أدخل البيانات المطلوبة (تاريخ الميلاد، البلد، الإيميل).', 'قم بتعيين كلمة المرور وإعدادات الخصوصية.'], en: ['When adding a user, select <strong>(Create an Account)</strong>.', 'Enter required details.', 'Set password and privacy settings.'] } }
             },
             {
                 id: 'login_psn',
                 title: { ar: 'تسجيل الدخول إلى حساب PSN', en: 'Sign In to PSN Account' },
-                ps4: {
-                    steps: {
-                        ar: ['اذهب إلى <strong>(الإعدادات)</strong>.', 'اختر <strong>(إدارة الحساب)</strong>.', 'اختر <strong>(تسجيل الدخول إلى PlayStation Network)</strong>.', 'أدخل الإيميل والباسورد واضغط (تسجيل الدخول).'],
-                        en: ['Go to <strong>(Settings)</strong>.', 'Select <strong>(Account Management)</strong>.', 'Select <strong>(Sign In to PlayStation Network)</strong>.', 'Enter Email and Password and click Sign In.']
-                    }
-                },
-                ps5: {
-                    steps: {
-                        ar: ['اذهب إلى <strong>(الإعدادات)</strong> > <strong>(المستخدمون والحسابات)</strong>.', 'اختر <strong>(الحساب)</strong> ثم <strong>(تسجيل الدخول)</strong>.', 'أدخل الإيميل والباسورد، أو استخدم تطبيق PS App لمسح رمز QR.'],
-                        en: ['Go to <strong>(Settings)</strong> > <strong>(Users and Accounts)</strong>.', 'Select <strong>(Account)</strong> then <strong>(Sign In)</strong>.', 'Enter your details or use the PS App to scan the QR code.']
-                    }
-                }
+                ps4: { steps: { ar: ['اذهب إلى <strong>(الإعدادات)</strong> > <strong>(إدارة الحساب)</strong>.', 'اختر <strong>(تسجيل الدخول إلى PSN)</strong>.', 'أدخل الإيميل والباسورد واضغط تسجيل الدخول.'], en: ['Go to <strong>(Settings)</strong> > <strong>(Account Management)</strong>.', 'Select <strong>(Sign In to PSN)</strong>.', 'Enter Email and Password.'] } },
+                ps5: { steps: { ar: ['اذهب إلى <strong>(الإعدادات)</strong> > <strong>(المستخدمون والحسابات)</strong>.', 'اختر <strong>(الحساب)</strong> ثم <strong>(تسجيل الدخول)</strong>.', 'أدخل البيانات أو استخدم تطبيق PS App.'], en: ['Go to <strong>(Settings)</strong> > <strong>(Users and Accounts)</strong>.', 'Select <strong>(Account)</strong> > <strong>(Sign In)</strong>.'] } }
             },
             {
-                id: 'rebuild_database',
-                title: { ar: 'حل مشاكل التعليق (إعادة بناء قاعدة البيانات)', en: 'Fix Lag (Rebuild Database)' },
-                note: {
-                    ar: 'هذا الإجراء آمن تماماً ولن يمسح ألعابك أو بياناتك، ولكنه يعالج بطء النظام.',
-                    en: 'This is completely safe and will not delete games. It only fixes system lag.'
-                },
-                ps4: {
-                    steps: {
-                        ar: ['أطفئ الجهاز تماماً (ليس وضع السكون).', 'اضغط مع الاستمرار على زر التشغيل في الجهاز حتى تسمع الصافرة الثانية (بعد 7 ثوانٍ).', 'وصل الذراع بسلك USB واضغط زر PS.', 'اختر الخيار رقم 5: <strong>(إعادة بناء قاعدة البيانات)</strong> وانتظر.'],
-                        en: ['Turn off the console completely.', 'Hold the power button until you hear a second beep (about 7 seconds).', 'Connect controller via USB and press the PS button.', 'Select Option 5: <strong>(Rebuild Database)</strong> and wait.']
-                    }
-                },
-                ps5: {
-                    steps: {
-                        ar: ['أطفئ الجهاز تماماً.', 'اضغط مطولاً على زر التشغيل حتى تسمع الصافرة الثانية.', 'وصل الذراع بسلك USB واضغط زر PS.', 'اختر <strong>(مسح ذاكرة التخزين المؤقت وإعادة بناء قاعدة البيانات)</strong>، ثم اختر الخيار الثاني.'],
-                        en: ['Turn off the console completely.', 'Hold the power button until the second beep.', 'Connect controller via USB and press PS button.', 'Select <strong>(Clear Cache and Rebuild Database)</strong>, then choose the second option.']
-                    }
-                }
+                id: 'change_email',
+                title: { ar: 'تغيير البريد الإلكتروني للحساب', en: 'Change Account Email' },
+                ps4: { steps: { ar: ['اذهب إلى <strong>(الإعدادات)</strong> > <strong>(إدارة الحساب)</strong>.', 'اختر <strong>(معلومات الحساب)</strong>.', 'اختر <strong>(معرّف تسجيل الدخول)</strong> وقم بتغيير الإيميل.'], en: ['Go to <strong>(Settings)</strong> > <strong>(Account Management)</strong>.', 'Select <strong>(Account Information)</strong>.', 'Select <strong>(Sign-In ID)</strong> and change email.'] } },
+                ps5: { steps: { ar: ['اذهب إلى <strong>(الإعدادات)</strong> > <strong>(المستخدمون والحسابات)</strong>.', 'اختر <strong>(الحساب)</strong> > <strong>(معرّف تسجيل الدخول)</strong>.'], en: ['Go to <strong>(Settings)</strong> > <strong>(Users and Accounts)</strong>.', 'Select <strong>(Account)</strong> > <strong>(Sign-In ID)</strong>.'] } }
             },
             {
-                id: 'controller_sync',
-                title: { ar: 'إعادة ضبط وربط ذراع التحكم', en: 'Reset and Sync Controller' },
-                ps4: {
-                    steps: {
-                        ar: ['استخدم دبوساً صغيراً للضغط على زر إعادة الضبط (Reset) المخفي في ثقب صغير خلف الذراع بجوار زر L2 لمدة 5 ثوانٍ.', 'قم بتوصيل الذراع بجهاز الـ PS4 باستخدام سلك USB أصلي.', 'اضغط على زر PS في الذراع لتشغيله وربطه بالجهاز.'],
-                        en: ['Use a small pin to press the hidden Reset button on the back of the controller near L2 for 5 seconds.', 'Connect the controller to the PS4 using a data USB cable.', 'Press the PS button to turn it on and sync.']
-                    }
-                },
-                ps5: {
-                    steps: {
-                        ar: ['الزر المخفي لإعادة الضبط موجود خلف ذراع DualSense بجوار شعار SONY.', 'اضغط عليه بدبوس لمدة 5 ثوانٍ.', 'وصل الذراع بالـ PS5 بسلك Type-C واضغط زر PS.'],
-                        en: ['The hidden reset button is on the back of the DualSense near the SONY logo.', 'Press it with a pin for 5 seconds.', 'Connect to PS5 via Type-C cable and press the PS button.']
-                    }
-                }
+                id: 'change_password',
+                title: { ar: 'تغيير كلمة المرور (الباسورد)', en: 'Change Password' },
+                ps4: { steps: { ar: ['اذهب إلى <strong>(الإعدادات)</strong> > <strong>(إدارة الحساب)</strong>.', 'اختر <strong>(معلومات الحساب)</strong> > <strong>(الأمان)</strong>.', 'اختر <strong>(كلمة المرور)</strong>.'], en: ['Go to <strong>(Settings)</strong> > <strong>(Account Management)</strong>.', 'Select <strong>(Account Information)</strong> > <strong>(Security)</strong>.', 'Select <strong>(Password)</strong>.'] } },
+                ps5: { steps: { ar: ['اذهب إلى <strong>(الإعدادات)</strong> > <strong>(المستخدمون والحسابات)</strong>.', 'اختر <strong>(الحساب)</strong> > <strong>(الأمان)</strong> > <strong>(كلمة المرور)</strong>.'], en: ['Go to <strong>(Settings)</strong> > <strong>(Users and Accounts)</strong>.', 'Select <strong>(Account)</strong> > <strong>(Security)</strong> > <strong>(Password)</strong>.'] } }
             },
             {
-                id: 'transfer_data',
-                title: { ar: 'نقل البيانات والألعاب من PS4 إلى PS5', en: 'Data Transfer from PS4 to PS5' },
-                note: {
-                    ar: 'تأكد أن كلا الجهازين متصلان بنفس شبكة الواي فاي، ويُفضل ربطهما بكابل LAN لسرعة النقل.',
-                    en: 'Ensure both consoles are on the same Wi-Fi. Using a LAN cable between them is faster.'
-                },
-                ps4: {
-                    steps: {
-                        ar: ['قم بتشغيل جهاز الـ PS4 وسجل الدخول بنفس الحساب الذي ستستخدمه على הـ PS5.', 'قم بتحديث نظام الـ PS4 إلى آخر إصدار.', 'لا تفصل الجهاز عن الكهرباء أثناء العملية التي ستتم من الـ PS5.'],
-                        en: ['Turn on the PS4 and sign in with the same account you will use on PS5.', 'Update the PS4 software to the latest version.', 'Do not unplug the console during the transfer process initiated from PS5.']
-                    }
-                },
-                ps5: {
-                    steps: {
-                        ar: ['اذهب إلى <strong>(الإعدادات)</strong> > <strong>(النظام)</strong> > <strong>(برمجيات النظام)</strong>.', 'اختر <strong>(نقل البيانات)</strong>.', 'اتبع التعليمات على الشاشة، وعندما يُطلب منك، اضغط على زر التشغيل في الـ PS4 لمدة ثانية واحدة حتى تسمع صافرة.'],
-                        en: ['Go to <strong>(Settings)</strong> > <strong>(System)</strong> > <strong>(System Software)</strong>.', 'Select <strong>(Data Transfer)</strong>.', 'Follow instructions. When prompted, press the PS4 power button for one second until it beeps.']
-                    }
-                }
+                id: 'change_avatar',
+                title: { ar: 'تغيير الصورة الرمزية والاسم', en: 'Change Avatar and Name' },
+                ps4: { steps: { ar: ['من الشاشة الرئيسية، اصعد للأعلى واختر <strong>(ملف التعريف)</strong>.', 'اضغط على النقاط الثلاث واختر <strong>(تعديل ملف التعريف)</strong>.', 'اختر <strong>(الصورة الرمزية)</strong> أو <strong>(الاسم)</strong> للتعديل.'], en: ['From home screen, select <strong>(Profile)</strong>.', 'Click the three dots and select <strong>(Edit Profile)</strong>.', 'Select <strong>(Avatar)</strong> or <strong>(Name)</strong>.'] } },
+                ps5: { steps: { ar: ['اذهب إلى <strong>(ملف التعريف)</strong> من الشاشة الرئيسية.', 'اختر أيقونة التعديل (القلم).', 'اختر <strong>(الصورة الرمزية)</strong> للتغيير.'], en: ['Go to <strong>(Profile)</strong>.', 'Select the Edit (Pencil) icon.', 'Select <strong>(Avatar)</strong>.'] } }
             },
             {
-                id: 'ps4_to_ps5_upgrade',
-                title: { ar: 'ترقية اللعبة من نسخة PS4 إلى PS5', en: 'Upgrade PS4 Game to PS5 Version' },
-                ps4: {
-                    steps: {
-                        ar: ['هذه الميزة متاحة فقط عند الانتقال لجهاز PS5. من جهاز الـ PS4 يمكنك فقط لعب نسخة الـ PS4 الطبيعية.'],
-                        en: ['This feature is only available when upgrading to a PS5 console.']
-                    }
-                },
-                ps5: {
-                    steps: {
-                        ar: ['أدخل شريط اللعبة (الديسك) الخاص بـ PS4، أو اذهب للعبة الرقمية في مكتبتك.', 'في شاشة اللعبة (Game Hub)، اذهب إلى علامة الثلاث نقاط (...) واختر <strong>(عرض المنتج)</strong> أو ابحث عن عرض <strong>(ترقية PS5 مجانية / مدفوعة)</strong>.', 'اضغط على الترقية (Upgrade) لتبدأ تحميل النسخة المخصصة لـ PS5.'],
-                        en: ['Insert the PS4 disc or go to the digital game in your library.', 'On the Game Hub, go to the three dots (...) and select <strong>(View Product)</strong> or look for the <strong>(PS5 Upgrade)</strong> offer.', 'Select the upgrade to start downloading the PS5 version.']
-                    }
-                }
+                id: 'privacy_settings',
+                title: { ar: 'تعديل إعدادات الخصوصية', en: 'Adjust Privacy Settings' },
+                ps4: { steps: { ar: ['اذهب إلى <strong>(الإعدادات)</strong> > <strong>(إدارة الحساب)</strong>.', 'اختر <strong>(إعدادات الخصوصية)</strong>.', 'تحكم في من يرى ألعابك، رسائلك، أو أصدقائك.'], en: ['Go to <strong>(Settings)</strong> > <strong>(Account Management)</strong>.', 'Select <strong>(Privacy Settings)</strong>.', 'Control who sees your games, messages, etc.'] } },
+                ps5: { steps: { ar: ['اذهب إلى <strong>(الإعدادات)</strong> > <strong>(المستخدمون والحسابات)</strong>.', 'اختر <strong>(الخصوصية)</strong> > <strong>(عرض إعدادات الخصوصية وتخصيصها)</strong>.'], en: ['Go to <strong>(Settings)</strong> > <strong>(Users and Accounts)</strong>.', 'Select <strong>(Privacy)</strong> > <strong>(View and Customize Privacy Settings)</strong>.'] } }
+            },
+            {
+                id: 'two_step',
+                title: { ar: 'تفعيل التحقق المزدوج (2-Step Verification)', en: 'Enable 2-Step Verification' },
+                ps4: { steps: { ar: ['اذهب إلى <strong>(الإعدادات)</strong> > <strong>(إدارة الحساب)</strong> > <strong>(معلومات الحساب)</strong>.', 'اختر <strong>(الأمان)</strong>.', 'اختر <strong>(التحقق المزدوج)</strong> واربط رقم هاتفك.'], en: ['Go to <strong>(Settings)</strong> > <strong>(Account Management)</strong> > <strong>(Account Info)</strong>.', 'Select <strong>(Security)</strong>.', 'Select <strong>(2-Step Verification)</strong> and add phone number.'] } },
+                ps5: { steps: { ar: ['اذهب إلى <strong>(الإعدادات)</strong> > <strong>(المستخدمون والحسابات)</strong>.', 'اختر <strong>(الحساب)</strong> > <strong>(الأمان)</strong>.', 'اختر <strong>(التحقق المزدوج)</strong> للربط عبر رسالة أو تطبيق الموثق.'], en: ['Go to <strong>(Settings)</strong> > <strong>(Users and Accounts)</strong>.', 'Select <strong>(Account)</strong> > <strong>(Security)</strong>.', 'Select <strong>(2-Step Verification)</strong>.'] } }
+            },
+            // 3. التخزين والبيانات
+            {
+                id: 'check_storage',
+                title: { ar: 'معرفة مساحة التخزين المتبقية', en: 'Check Storage Space' },
+                ps4: { steps: { ar: ['اذهب إلى <strong>(الإعدادات)</strong>.', 'اختر <strong>(مساحة التخزين)</strong>.', 'ستظهر لك السعة المتبقية والمستخدمة.'], en: ['Go to <strong>(Settings)</strong>.', 'Select <strong>(Storage)</strong>.', 'View free and used space.'] } },
+                ps5: { steps: { ar: ['اذهب إلى <strong>(الإعدادات)</strong> > <strong>(مساحة التخزين)</strong>.', 'ستجد المساحة الأساسية، ومساحة M.2، والـ USB إن وُجدت.'], en: ['Go to <strong>(Settings)</strong> > <strong>(Storage)</strong>.', 'View Console, M.2, and USB storage.'] } }
+            },
+            {
+                id: 'extended_storage',
+                title: { ar: 'إعداد هارد خارجي (تخزين موسع)', en: 'Setup Extended Storage (External HDD)' },
+                ps4: { steps: { ar: ['وصل الهارد الخارجي بـ USB.', 'اذهب إلى <strong>(الإعدادات)</strong> > <strong>(الأجهزة)</strong> > <strong>(أجهزة تخزين USB)</strong>.', 'اختر الهارد واضغط <strong>(تنسيق كتخزين موسع)</strong>.'], en: ['Connect HDD via USB.', 'Go to <strong>(Settings)</strong> > <strong>(Devices)</strong> > <strong>(USB Storage Devices)</strong>.', 'Select HDD and click <strong>(Format as Extended Storage)</strong>.'] } },
+                ps5: { steps: { ar: ['وصل الهارد الخارجي.', 'اذهب إلى <strong>(الإعدادات)</strong> > <strong>(مساحة التخزين)</strong> > <strong>(تخزين USB الموسع)</strong>.', 'اختر <strong>(تنسيق كـ USB موسع)</strong>.'], en: ['Connect HDD.', 'Go to <strong>(Settings)</strong> > <strong>(Storage)</strong> > <strong>(USB Extended Storage)</strong>.', 'Select <strong>(Format as USB Extended Storage)</strong>.'] } }
             },
             {
                 id: 'copy_to_usb',
                 title: { ar: 'نسخ التختيم إلى فلاشة USB', en: 'Copy Saved Data to USB' },
-                ps4: {
-                    steps: {
-                        ar: ['اذهب إلى <strong>(الإعدادات)</strong>.', 'اختر <strong>(إدارة البيانات المحفوظة للتطبيق)</strong> > <strong>(البيانات المحفوظة في مساحة تخزين النظام)</strong>.', 'اختر <strong>(نسخ إلى جهاز تخزين USB)</strong>، ثم حدد اللعبة وانقر نسخ.'],
-                        en: ['Go to <strong>(Settings)</strong>.', 'Select <strong>(Application Saved Data Management)</strong> > <strong>(Saved Data in System Storage)</strong>.', 'Choose <strong>(Copy to USB Storage Device)</strong>, select games, and copy.']
-                    }
-                },
-                ps5: {
-                    steps: {
-                        ar: ['تنبيه: لا يمكن نسخ تخزينات ألعاب PS5 لـ USB (تحتاج PS Plus). لتخزينات PS4:', 'اذهب إلى <strong>(الإعدادات)</strong> > <strong>(البيانات المحفوظة وإعدادات الألعاب)</strong>.', 'اختر <strong>(البيانات المحفوظة PS4)</strong> > <strong>(نسخ إلى محرك أقراص USB)</strong>.'],
-                        en: ['Note: PS5 saves cannot be copied to USB. For PS4 saves:', 'Go to <strong>(Settings)</strong> > <strong>(Saved Data and Game/App Settings)</strong>.', 'Select <strong>(Saved Data PS4)</strong> > <strong>(Copy to USB Drive)</strong>.']
-                    }
-                }
+                note: { ar: 'تأكد أن الفلاشة مهيأة بصيغة exFAT أو FAT32.', en: 'Ensure the USB is formatted to exFAT or FAT32.' },
+                ps4: { steps: { ar: ['اذهب إلى <strong>(الإعدادات)</strong> > <strong>(إدارة البيانات المحفوظة للتطبيق)</strong>.', 'اختر <strong>(البيانات المحفوظة في مساحة تخزين النظام)</strong>.', 'اختر <strong>(نسخ إلى جهاز تخزين USB)</strong> وحدد الألعاب.'], en: ['Go to <strong>(Settings)</strong> > <strong>(Application Saved Data Management)</strong>.', 'Select <strong>(Saved Data in System Storage)</strong>.', 'Select <strong>(Copy to USB)</strong> and choose games.'] } },
+                ps5: { steps: { ar: ['(لألعاب PS4 فقط): اذهب إلى <strong>(الإعدادات)</strong> > <strong>(البيانات المحفوظة)</strong>.', 'اختر <strong>(البيانات المحفوظة PS4)</strong>.', 'اختر <strong>(نسخ إلى محرك أقراص USB)</strong>.'], en: ['(For PS4 games only): Go to <strong>(Settings)</strong> > <strong>(Saved Data)</strong>.', 'Select <strong>(Saved Data PS4)</strong>.', 'Select <strong>(Copy to USB Drive)</strong>.'] } }
             },
             {
-                id: 'headphone_audio',
-                title: { ar: 'توجيه كل الصوت إلى سماعات الذراع', en: 'Output All Audio to Headphones' },
-                ps4: {
-                    steps: {
-                        ar: ['قم بتوصيل السماعة بالذراع.', 'اذهب إلى <strong>(الإعدادات)</strong> > <strong>(الأجهزة)</strong> > <strong>(أجهزة صوت)</strong>.', 'اختر <strong>(إخراج إلى سماعات الرأس)</strong> وغيره إلى <strong>(كل ملفات الصوت)</strong>.'],
-                        en: ['Plug headset into controller.', 'Go to <strong>(Settings)</strong> > <strong>(Devices)</strong> > <strong>(Audio Devices)</strong>.', 'Change <strong>(Output to Headphones)</strong> to <strong>(All Audio)</strong>.']
-                    }
-                },
-                ps5: {
-                    steps: {
-                        ar: ['اضغط زر PS مرة واحدة لفتح مركز التحكم (Control Center).', 'اختر أيقونة <strong>(الصوت)</strong> في الأسفل.', 'تأكد من تحديد سماعات الرأس، ثم اختر <strong>(إخراج إلى سماعات الرأس)</strong> واضبطه على <strong>(كل ملفات الصوت)</strong>.'],
-                        en: ['Press the PS button to open the Control Center.', 'Select the <strong>(Sound)</strong> icon at the bottom.', 'Ensure headphones are selected, go to <strong>(Output to Headphones)</strong> and set to <strong>(All Audio)</strong>.']
-                    }
-                }
+                id: 'copy_from_usb',
+                title: { ar: 'استرجاع التختيم من فلاشة USB للجهاز', en: 'Copy Saved Data from USB' },
+                ps4: { steps: { ar: ['اذهب إلى <strong>(الإعدادات)</strong> > <strong>(إدارة البيانات المحفوظة للتطبيق)</strong>.', 'اختر <strong>(البيانات المحفوظة على جهاز تخزين USB)</strong>.', 'اختر <strong>(نسخ إلى مساحة تخزين النظام)</strong>.'], en: ['Go to <strong>(Settings)</strong> > <strong>(Application Saved Data Management)</strong>.', 'Select <strong>(Saved Data on USB Storage)</strong>.', 'Select <strong>(Copy to System Storage)</strong>.'] } },
+                ps5: { steps: { ar: ['اذهب إلى <strong>(الإعدادات)</strong> > <strong>(البيانات المحفوظة)</strong>.', 'اختر <strong>(البيانات المحفوظة PS4)</strong>.', 'اختر <strong>(محرك أقراص USB)</strong> ثم <strong>(نسخ إلى مساحة تخزين وحدة التحكم)</strong>.'], en: ['Go to <strong>(Settings)</strong> > <strong>(Saved Data)</strong>.', 'Select <strong>(Saved Data PS4)</strong>.', 'Select <strong>(USB Drive)</strong> > <strong>(Copy to Console Storage)</strong>.'] } }
+            },
+            {
+                id: 'delete_saves',
+                title: { ar: 'حذف البيانات المحفوظة لتوفير المساحة', en: 'Delete Saved Data' },
+                ps4: { steps: { ar: ['اذهب إلى <strong>(الإعدادات)</strong> > <strong>(إدارة البيانات المحفوظة للتطبيق)</strong>.', 'اختر مساحة تخزين النظام، ثم اختر <strong>(حذف)</strong>.', 'حدد الملفات التي لا تريدها واحذفها.'], en: ['Go to <strong>(Settings)</strong> > <strong>(Application Saved Data Management)</strong>.', 'Select System Storage, then <strong>(Delete)</strong>.', 'Select files and delete.'] } },
+                ps5: { steps: { ar: ['اذهب إلى <strong>(الإعدادات)</strong> > <strong>(مساحة التخزين)</strong>.', 'اختر <strong>(البيانات المحفوظة)</strong> وحدد PS4 أو PS5.', 'حدد الملفات واضغط حذف.'], en: ['Go to <strong>(Settings)</strong> > <strong>(Storage)</strong>.', 'Select <strong>(Saved Data)</strong> and choose PS4 or PS5.', 'Select files and delete.'] } }
+            },
+            {
+                id: 'usb_format',
+                title: { ar: 'حل مشكلة عدم قراءة الفلاشة (تهيئة الفلاشة)', en: 'Fix USB Not Reading (Format USB)' },
+                ps4: { steps: { ar: ['إذا لم يقرأ الجهاز الفلاشة، يجب تهيئتها.', 'اذهب من الكمبيوتر وقم بعمل Format للفلاشة بصيغة <strong>exFAT</strong>.', 'أعد تركيبها في الجهاز وستعمل.'], en: ['If USB is not read, format it.', 'On a PC, format the USB to <strong>exFAT</strong>.', 'Plug it back into the console.'] } },
+                ps5: { steps: { ar: ['قم بتهيئة الفلاشة من الكمبيوتر بصيغة <strong>exFAT</strong> لضمان عملها بشكل صحيح لنقل البيانات والتحديثات.'], en: ['Format the USB on a PC to <strong>exFAT</strong> to ensure it works for transfers and updates.'] } }
+            },
+            // 4. التنزيلات والإنترنت
+            {
+                id: 'pause_download',
+                title: { ar: 'إيقاف مؤقت، إلغاء، أو حذف تنزيل', en: 'Pause, Cancel, or Delete Download' },
+                ps4: { steps: { ar: ['اذهب إلى <strong>(التنبيهات)</strong> > <strong>(التنزيلات)</strong>.', 'قف على اللعبة واضغط (X).', 'اختر <strong>(إيقاف مؤقت)</strong> أو <strong>(إلغاء وحذف)</strong>.'], en: ['Go to <strong>(Notifications)</strong> > <strong>(Downloads)</strong>.', 'Press (X) on the game.', 'Select <strong>(Pause)</strong> or <strong>(Cancel and Delete)</strong>.'] } },
+                ps5: { steps: { ar: ['اضغط زر PS لفتح مركز التحكم.', 'اختر أيقونة <strong>(التنزيلات)</strong>.', 'حدد التحميل واضغط (X) للإيقاف أو الإلغاء.'], en: ['Press PS button to open Control Center.', 'Select <strong>(Downloads)</strong> icon.', 'Select download and press (X) to pause or cancel.'] } }
+            },
+            {
+                id: 'ps4_to_ps5_upgrade',
+                title: { ar: 'ترقية اللعبة من نسخة PS4 إلى PS5', en: 'Upgrade PS4 Game to PS5 Version' },
+                ps4: { steps: { ar: ['هذه الميزة غير متاحة داخل جهاز PS4. لا يمكن لعب نسخة PS5 إلا على جهاز PS5.'], en: ['This feature is unavailable on PS4. PS5 versions only play on PS5 consoles.'] } },
+                ps5: { steps: { ar: ['في مكتبة الألعاب، اذهب إلى اللعبة واضغط على زر الثلاث نقاط (...).', 'ابحث عن خيار <strong>(ترقية PS5 مجانية / عرض)</strong>.', 'اضغط تنزيل لتحصل على النسخة المحسنة.'], en: ['In Library, go to the game and click the three dots (...).', 'Look for <strong>(PS5 Upgrade)</strong>.', 'Click download for the enhanced version.'] } }
+            },
+            {
+                id: 'wifi_setup',
+                title: { ar: 'تشغيل وإدخال الواي فاي (الإنترنت)', en: 'Set Up Wi-Fi Connection' },
+                ps4: { steps: { ar: ['اذهب إلى <strong>(الإعدادات)</strong> > <strong>(الشبكة)</strong>.', 'اختر <strong>(إعداد الاتصال بالإنترنت)</strong>.', 'اختر <strong>(استخدام Wi-Fi)</strong> ثم <strong>(سهل)</strong>، وأدخل الباسورد.'], en: ['Go to <strong>(Settings)</strong> > <strong>(Network)</strong>.', 'Select <strong>(Set Up Internet Connection)</strong>.', 'Choose <strong>(Use Wi-Fi)</strong> > <strong>(Easy)</strong>, and enter password.'] } },
+                ps5: { steps: { ar: ['اذهب إلى <strong>(الإعدادات)</strong> > <strong>(الشبكة)</strong> > <strong>(الإعدادات)</strong>.', 'اختر <strong>(إعداد الاتصال بالإنترنت)</strong> وحدد شبكتك.'], en: ['Go to <strong>(Settings)</strong> > <strong>(Network)</strong> > <strong>(Settings)</strong>.', 'Select <strong>(Set Up Internet Connection)</strong> and choose network.'] } }
+            },
+            {
+                id: 'ip_mac',
+                title: { ar: 'معرفة عنوان IP والـ MAC Address', en: 'Find IP and MAC Address' },
+                ps4: { steps: { ar: ['اذهب إلى <strong>(الإعدادات)</strong> > <strong>(النظام)</strong>.', 'اختر <strong>(معلومات النظام)</strong>.'], en: ['Go to <strong>(Settings)</strong> > <strong>(System)</strong>.', 'Select <strong>(System Information)</strong>.'] } },
+                ps5: { steps: { ar: ['اذهب إلى <strong>(الإعدادات)</strong> > <strong>(الشبكة)</strong>.', 'اختر <strong>(حالة الاتصال)</strong> > <strong>(عرض حالة الاتصال)</strong>.'], en: ['Go to <strong>(Settings)</strong> > <strong>(Network)</strong>.', 'Select <strong>(Connection Status)</strong> > <strong>(View Connection Status)</strong>.'] } }
+            },
+            {
+                id: 'web_browser',
+                title: { ar: 'الوصول لمتصفح الإنترنت (Web Browser)', en: 'Access Web Browser' },
+                ps4: { steps: { ar: ['من الشاشة الرئيسية، ابحث عن تطبيق <strong>(متصفح الإنترنت - WWW)</strong> وافتحه.', 'اضغط زر (مثلث) لكتابة الرابط.'], en: ['From the home screen, open the <strong>(Internet Browser - WWW)</strong> app.', 'Press (Triangle) to type a URL.'] } },
+                ps5: { steps: { ar: ['لا يوجد تطبيق متصفح. افتح أي محادثة مع صديق.', 'أرسل له رسالة: <strong>www.google.com</strong>', 'اضغط على الرابط وسيفتح المتصفح.'], en: ['There is no app. Open a chat with a friend.', 'Send message: <strong>www.google.com</strong>', 'Click the link to open the browser.'] } }
+            },
+            // 5. الأجهزة والصوت
+            {
+                id: 'audio_headphones',
+                title: { ar: 'توجيه كل الصوت إلى سماعات الرأس (الذراع)', en: 'Output All Audio to Headphones' },
+                ps4: { steps: { ar: ['قم بتوصيل السماعة بالذراع.', 'اذهب إلى <strong>(الإعدادات)</strong> > <strong>(الأجهزة)</strong> > <strong>(أجهزة صوت)</strong>.', 'اضبط <strong>(إخراج إلى سماعات الرأس)</strong> على <strong>(كل ملفات الصوت)</strong>.'], en: ['Plug headset into controller.', 'Go to <strong>(Settings)</strong> > <strong>(Devices)</strong> > <strong>(Audio Devices)</strong>.', 'Set <strong>(Output to Headphones)</strong> to <strong>(All Audio)</strong>.'] } },
+                ps5: { steps: { ar: ['اضغط زر PS لفتح مركز التحكم.', 'اختر أيقونة <strong>(الصوت)</strong>.', 'اختر <strong>(إخراج إلى سماعات الرأس)</strong> واضبطه على <strong>(كل ملفات الصوت)</strong>.'], en: ['Press PS button to open Control Center.', 'Select <strong>(Sound)</strong> icon.', 'Set <strong>(Output to Headphones)</strong> to <strong>(All Audio)</strong>.'] } }
+            },
+            {
+                id: 'display_hdr',
+                title: { ar: 'إعدادات دقة الشاشة والـ HDR', en: 'Video Output & HDR Settings' },
+                ps4: { steps: { ar: ['اذهب إلى <strong>(الإعدادات)</strong> > <strong>(الصوت والشاشة)</strong>.', 'اختر <strong>(إعدادات إخراج الفيديو)</strong> لضبط الدقة (Resolution) والـ HDR.'], en: ['Go to <strong>(Settings)</strong> > <strong>(Sound and Screen)</strong>.', 'Select <strong>(Video Output Settings)</strong>.'] } },
+                ps5: { steps: { ar: ['اذهب إلى <strong>(الإعدادات)</strong> > <strong>(الشاشة والفيديو)</strong>.', 'اختر <strong>(إخراج الفيديو)</strong> لضبط 4K و HDR و 120Hz.'], en: ['Go to <strong>(Settings)</strong> > <strong>(Screen and Video)</strong>.', 'Select <strong>(Video Output)</strong>.'] } }
+            },
+            {
+                id: 'bluetooth_devices',
+                title: { ar: 'إعدادات البلوتوث (ربط أجهزة)', en: 'Bluetooth Devices Settings' },
+                ps4: { steps: { ar: ['اذهب إلى <strong>(الإعدادات)</strong> > <strong>(الأجهزة)</strong>.', 'اختر <strong>(أجهزة Bluetooth)</strong> للبحث عن أجهزة جديدة وربطها.'], en: ['Go to <strong>(Settings)</strong> > <strong>(Devices)</strong>.', 'Select <strong>(Bluetooth Devices)</strong> to pair.'] } },
+                ps5: { steps: { ar: ['اذهب إلى <strong>(الإعدادات)</strong> > <strong>(الملحقات)</strong>.', 'اختر <strong>(عام)</strong> > <strong>(ملحقات Bluetooth)</strong>.'], en: ['Go to <strong>(Settings)</strong> > <strong>(Accessories)</strong>.', 'Select <strong>(General)</strong> > <strong>(Bluetooth Accessories)</strong>.'] } }
+            },
+            // 6. النظام والصيانة
+            {
+                id: 'change_language',
+                title: { ar: 'تغيير لغة عرض الجهاز', en: 'Change System Language' },
+                ps4: { steps: { ar: ['اذهب إلى <strong>(الإعدادات)</strong>.', 'انزل للأسفل واختر <strong>(اللغة)</strong>.', 'اختر <strong>(لغة النظام)</strong> وحدد اللغة المطلوبة.'], en: ['Go to <strong>(Settings)</strong>.', 'Scroll down and select <strong>(Language)</strong>.', 'Select <strong>(System Language)</strong>.'] } },
+                ps5: { steps: { ar: ['اذهب إلى <strong>(الإعدادات)</strong> > <strong>(النظام)</strong>.', 'اختر <strong>(اللغة)</strong> ثم <strong>(لغة وحدة التحكم)</strong>.'], en: ['Go to <strong>(Settings)</strong> > <strong>(System)</strong>.', 'Select <strong>(Language)</strong> > <strong>(Console Language)</strong>.'] } }
+            },
+            {
+                id: 'time_date',
+                title: { ar: 'ضبط الوقت والتاريخ', en: 'Set Time and Date' },
+                ps4: { steps: { ar: ['اذهب إلى <strong>(الإعدادات)</strong> > <strong>(التاريخ والوقت)</strong>.', 'يمكنك ضبطه يدوياً أو عبر الإنترنت حسب منطقتك.'], en: ['Go to <strong>(Settings)</strong> > <strong>(Date and Time)</strong>.', 'Set manually or via internet.'] } },
+                ps5: { steps: { ar: ['اذهب إلى <strong>(الإعدادات)</strong> > <strong>(النظام)</strong>.', 'اختر <strong>(التاريخ والوقت)</strong> للضبط.'], en: ['Go to <strong>(Settings)</strong> > <strong>(System)</strong>.', 'Select <strong>(Date and Time)</strong>.'] } }
+            },
+            {
+                id: 'software_version',
+                title: { ar: 'معرفة إصدار السوفتوير الحالي', en: 'Check Software Version' },
+                ps4: { steps: { ar: ['اذهب إلى <strong>(الإعدادات)</strong> > <strong>(النظام)</strong>.', 'اختر <strong>(معلومات النظام)</strong> وستجد رقم (برمجيات النظام).'], en: ['Go to <strong>(Settings)</strong> > <strong>(System)</strong>.', 'Select <strong>(System Information)</strong> to view System Software.'] } },
+                ps5: { steps: { ar: ['اذهب إلى <strong>(الإعدادات)</strong> > <strong>(النظام)</strong>.', 'اختر <strong>(برمجيات النظام)</strong> > <strong>(معلومات وحدة التحكم)</strong>.'], en: ['Go to <strong>(Settings)</strong> > <strong>(System)</strong>.', 'Select <strong>(System Software)</strong> > <strong>(Console Information)</strong>.'] } }
+            },
+            {
+                id: 'rebuild_database',
+                title: { ar: 'حل التعليق والبطء (إعادة بناء قاعدة البيانات)', en: 'Fix Lag (Rebuild Database)' },
+                note: { ar: 'هذا الإجراء آمن تماماً ولن يمسح بياناتك.', en: 'This is completely safe and will not delete data.' },
+                ps4: { steps: { ar: ['أطفئ الجهاز تماماً.', 'اضغط مع الاستمرار على زر التشغيل حتى تسمع الصافرة الثانية (بعد 7 ثوانٍ).', 'وصل الذراع بسلك واضغط زر PS.', 'اختر <strong>(إعادة بناء قاعدة البيانات)</strong>.'], en: ['Turn off console completely.', 'Hold power button until second beep.', 'Connect controller via cable and press PS.', 'Select <strong>(Rebuild Database)</strong>.'] } },
+                ps5: { steps: { ar: ['أطفئ الجهاز تماماً.', 'اضغط مطولاً على زر التشغيل حتى تسمع الصافرة الثانية.', 'وصل الذراع واضغط زر PS.', 'اختر <strong>(مسح ذاكرة التخزين المؤقت وإعادة بناء قاعدة البيانات)</strong>.'], en: ['Turn off completely.', 'Hold power until second beep.', 'Connect controller and press PS.', 'Select <strong>(Clear Cache and Rebuild Database)</strong>.'] } }
+            },
+            {
+                id: 'controller_sync',
+                title: { ar: 'إعادة ضبط وربط ذراع التحكم', en: 'Reset and Sync Controller' },
+                ps4: { steps: { ar: ['اضغط بدبوس على الزر المخفي خلف الذراع (بجوار L2) لمدة 5 ثوانٍ.', 'وصل الذراع بالجهاز باستخدام سلك USB ينقل البيانات.', 'اضغط زر PS للربط.'], en: ['Press hidden reset button on back of controller with a pin for 5s.', 'Connect to PS4 via data USB cable.', 'Press PS button to sync.'] } },
+                ps5: { steps: { ar: ['الزر المخفي خلف ذراع DualSense بجوار شعار SONY.', 'اضغط بدبوس لمدة 5 ثوانٍ.', 'وصله بالـ PS5 بسلك Type-C واضغط زر PS.'], en: ['Hidden button is behind DualSense near SONY logo.', 'Press with pin for 5s.', 'Connect via Type-C and press PS.'] } }
+            },
+            {
+                id: 'transfer_data',
+                title: { ar: 'نقل البيانات من PS4 إلى PS5', en: 'Data Transfer from PS4 to PS5' },
+                note: { ar: 'تأكد أن الجهازين متصلان بنفس شبكة الواي فاي أو بكابل LAN.', en: 'Ensure both are on the same Wi-Fi or connected via LAN.' },
+                ps4: { steps: { ar: ['قم بتشغيل הـ PS4 وسجل الدخول بحسابك.', 'قم بتحديث النظام لأحدث إصدار.', 'العملية ستتم التحكم بها من جهاز الـ PS5.'], en: ['Turn on PS4 and sign in.', 'Update system software.', 'Process is initiated from PS5.'] } },
+                ps5: { steps: { ar: ['اذهب إلى <strong>(الإعدادات)</strong> > <strong>(النظام)</strong> > <strong>(برمجيات النظام)</strong>.', 'اختر <strong>(نقل البيانات)</strong>.', 'اتبع التعليمات وعندما يطلب منك، اضغط زر التشغيل في הـ PS4 لثانية واحدة.'], en: ['Go to <strong>(Settings)</strong> > <strong>(System)</strong> > <strong>(System Software)</strong>.', 'Select <strong>(Data Transfer)</strong>.', 'Follow instructions and press PS4 power button when prompted.'] } }
+            },
+            {
+                id: 'clear_cache',
+                title: { ar: 'مسح ذاكرة التخزين المؤقت (Clear Cache)', en: 'Clear System Cache' },
+                ps4: { steps: { ar: ['أطفئ جهاز הـ PS4 بالكامل (ليس وضع السكون).', 'افصل كابل الكهرباء من ظهر الجهاز.', 'انتظر 30 ثانية ثم أعد تركيبه وشغل الجهاز.'], en: ['Turn off PS4 completely (not Rest Mode).', 'Unplug the power cord from the back.', 'Wait 30 seconds, plug it back and turn on.'] } },
+                ps5: { steps: { ar: ['أطفئ الجهاز تماماً وادخل للوضع الآمن (Safe Mode) بالضغط المطول حتى الصافرة الثانية.', 'وصل الذراع بسلك.', 'اختر <strong>(مسح ذاكرة التخزين المؤقت وإعادة بناء قاعدة البيانات)</strong> ثم اختر الخيار الأول.'], en: ['Turn off and enter Safe Mode (hold power until second beep).', 'Connect controller.', 'Select <strong>(Clear Cache and Rebuild Database)</strong>, then choose the first option.'] } }
             }
         ];
 
@@ -545,7 +550,7 @@
             }
         }
 
-        // التهيئة المبدئية
+        // تشغيل الريندر لأول مرة
         renderFAQ();
     </script>
 </body>
