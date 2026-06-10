@@ -247,7 +247,7 @@
 
     <script>
         const faqData = [
-            // 1. التفعيل، التراخيص، المكتبة (أهم 3)
+            // 1. التفعيل، التراخيص، المكتبة، حل مشكلة روكستار (أهم 4)
             {
                 id: 'primary_account',
                 title: { ar: 'تفعيل الحساب واعتباره جهازك الرئيسي', en: 'Activate as Your Primary Console' },
@@ -267,6 +267,13 @@
                 note: { ar: 'تأكد أولاً من فتح الحساب صاحب اللعبة. إذا طلب رمز مرور (Passcode)، فالرمز هو: مثلث، مربع، مثلث، مربع 0909.', en: 'Log into the account that owns the game first. If it asks for a Passcode, it is: Triangle, Square, Triangle, Square 0909.' },
                 ps4: { steps: { ar: ['اذهب إلى أيقونة <strong>(المكتبة)</strong> في أقصى يمين الشاشة الرئيسية.', 'انزل إلى قسم <strong>(تم الشراء)</strong>.', 'اختر اللعبة واضغط على <strong>(تنزيل)</strong>.'], en: ['Go to the <strong>(Library)</strong> icon on the far right of the home screen.', 'Scroll down to <strong>(Purchased)</strong>.', 'Select the game and click <strong>(Download)</strong>.'] } },
                 ps5: { steps: { ar: ['من الشاشة الرئيسية، اذهب إلى <strong>(مكتبة الألعاب)</strong> في أقصى اليمين.', 'اذهب إلى تبويب <strong>(مجموعتك)</strong>.', 'اختر اللعبة واضغط <strong>(تنزيل)</strong>.'], en: ['From the home screen, go to <strong>(Game Library)</strong> on the far right.', 'Navigate to the <strong>(Your Collection)</strong> tab.', 'Select the game and click <strong>(Download)</strong>.'] } }
+            },
+            {
+                id: 'fix_gta_rdr',
+                title: { ar: 'حل مشكلة تعليق GTA V و Red Dead Redemption', en: 'Fix GTA V & Red Dead Redemption Launch Issue' },
+                note: { ar: 'هذه المشكلة تمنع اللعبة من الفتح أو تعلق على شاشة التحميل. الحل بسيط جداً وهو تغيير السنة و الوقت يدوياً.', en: 'This issue prevents the game from loading. The fix is to manually change the console year to todays date.' },
+                ps4: { steps: { ar: ['اذهب إلى <strong>(الإعدادات)</strong>.', 'اختر <strong>(التاريخ والوقت)</strong>.', 'اختر <strong>(إعدادات التاريخ والوقت)</strong>.', 'اختر <strong>(ضبط يدوي)</strong>، وقم بتغيير السنة الحالية واضغط X للحفظ.', 'افتح اللعبة وستعمل بنجاح (يمكنك إرجاع الوقت لطبيعته لاحقاً).'], en: ['Go to <strong>(Settings)</strong>.', 'Select <strong>(Date and Time)</strong>.', 'Select <strong>(Date and Time Settings)</strong>.', 'Choose <strong>(Set Manually)</strong>, change the year and save.', 'Launch the game .'] } },
+                ps5: { steps: { ar: ['اذهب إلى <strong>(الإعدادات)</strong>.', 'اختر <strong>(النظام)</strong> > <strong>(التاريخ والوقت)</strong>.', 'عطّل خيار <strong>(الضبط التلقائي عبر الإنترنت)</strong>.', 'اختر <strong>(ضبط التاريخ والوقت يدوياً)</strong>، وقم بتغيير السنة إلى سنة سابقة واحفظ.', 'افتح اللعبة وستعمل بنجاح.'], en: ['Go to <strong>(Settings)</strong>.', 'Select <strong>(System)</strong> > <strong>(Date and Time)</strong>.', 'Disable <strong>(Set Automatically Using Internet)</strong>.', 'Select <strong>(Set Date and Time Manually)</strong>, change the year to a previous one, and save.', 'Launch the game successfully.'] } }
             },
             // 2. إدارة الحساب والمستخدمين
             {
@@ -512,7 +519,7 @@
                 content.style.maxHeight = null;
             } else {
                 item.classList.add('open');
-                content.style.maxHeight = content.scrollHeight + 60 + "px"; 
+                content.style.maxHeight = content.scrollHeight + 80 + "px"; 
             }
         }
 
@@ -550,7 +557,6 @@
             }
         }
 
-        // تشغيل الريندر لأول مرة
         renderFAQ();
     </script>
 </body>
